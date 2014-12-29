@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^TokenBlock)(NSString *accessToken);
+
 @interface PCFAuth : NSObject
+
++ (void)tokenWithBlock:(TokenBlock)block;
 
 @end

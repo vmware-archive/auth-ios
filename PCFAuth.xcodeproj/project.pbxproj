@@ -22,6 +22,47 @@
 
 /* Begin PBXBuildFile section */
 		E14D1ACD1A4230150073322C /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E14D1ACC1A4230140073322C /* libOCMock.a */; };
+		E1A830D41A44910900CF3BF9 /* PCFAFHTTPRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830C11A44910900CF3BF9 /* PCFAFHTTPRequestOperation.h */; };
+		E1A830D51A44910900CF3BF9 /* PCFAFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830C21A44910900CF3BF9 /* PCFAFHTTPRequestOperation.m */; };
+		E1A830D61A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830C31A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.h */; };
+		E1A830D71A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830C41A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.m */; };
+		E1A830D81A44910900CF3BF9 /* PCFAFHTTPSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830C51A44910900CF3BF9 /* PCFAFHTTPSessionManager.h */; };
+		E1A830D91A44910900CF3BF9 /* PCFAFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830C61A44910900CF3BF9 /* PCFAFHTTPSessionManager.m */; };
+		E1A830DA1A44910900CF3BF9 /* PCFAFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830C71A44910900CF3BF9 /* PCFAFNetworking.h */; };
+		E1A830DB1A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830C81A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.h */; };
+		E1A830DC1A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830C91A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.m */; };
+		E1A830DD1A44910900CF3BF9 /* PCFAFSecurityPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830CA1A44910900CF3BF9 /* PCFAFSecurityPolicy.h */; };
+		E1A830DE1A44910900CF3BF9 /* PCFAFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830CB1A44910900CF3BF9 /* PCFAFSecurityPolicy.m */; };
+		E1A830DF1A44910900CF3BF9 /* PCFAFURLConnectionOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830CC1A44910900CF3BF9 /* PCFAFURLConnectionOperation.h */; };
+		E1A830E01A44910900CF3BF9 /* PCFAFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830CD1A44910900CF3BF9 /* PCFAFURLConnectionOperation.m */; };
+		E1A830E11A44910900CF3BF9 /* PCFAFURLRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830CE1A44910900CF3BF9 /* PCFAFURLRequestSerialization.h */; };
+		E1A830E21A44910900CF3BF9 /* PCFAFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830CF1A44910900CF3BF9 /* PCFAFURLRequestSerialization.m */; };
+		E1A830E31A44910900CF3BF9 /* PCFAFURLResponseSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830D01A44910900CF3BF9 /* PCFAFURLResponseSerialization.h */; };
+		E1A830E41A44910900CF3BF9 /* PCFAFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830D11A44910900CF3BF9 /* PCFAFURLResponseSerialization.m */; };
+		E1A830E51A44910900CF3BF9 /* PCFAFURLSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830D21A44910900CF3BF9 /* PCFAFURLSessionManager.h */; };
+		E1A830E61A44910900CF3BF9 /* PCFAFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830D31A44910900CF3BF9 /* PCFAFURLSessionManager.m */; };
+		E1A830ED1A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830E91A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.h */; };
+		E1A830EE1A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830EA1A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.m */; };
+		E1A830EF1A4491B000CF3BF9 /* PCFAFOAuth2Manager.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830EB1A4491B000CF3BF9 /* PCFAFOAuth2Manager.h */; };
+		E1A830F01A4491B000CF3BF9 /* PCFAFOAuth2Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830EC1A4491B000CF3BF9 /* PCFAFOAuth2Manager.m */; };
+		E1A831071A44C4B000CF3BF9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A831061A44C4B000CF3BF9 /* main.m */; };
+		E1A8310A1A44C4B000CF3BF9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A831091A44C4B000CF3BF9 /* AppDelegate.m */; };
+		E1A8310D1A44C4B000CF3BF9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A8310C1A44C4B000CF3BF9 /* ViewController.m */; };
+		E1A831101A44C4B000CF3BF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1A8310E1A44C4B000CF3BF9 /* Main.storyboard */; };
+		E1A831121A44C4B000CF3BF9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1A831111A44C4B000CF3BF9 /* Images.xcassets */; };
+		E1A831151A44C4B000CF3BF9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1A831131A44C4B000CF3BF9 /* LaunchScreen.xib */; };
+		E1A8312C1A48A0E500CF3BF9 /* PCFLoginViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A8312A1A48A0E500CF3BF9 /* PCFLoginViewController.h */; };
+		E1A8312D1A48A0E500CF3BF9 /* PCFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A8312B1A48A0E500CF3BF9 /* PCFLoginViewController.m */; };
+		E1A831301A48A9D900CF3BF9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A8312F1A48A9D900CF3BF9 /* LoginViewController.m */; };
+		E1A831351A48AE2400CF3BF9 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1A831331A48AE2400CF3BF9 /* LoginViewController.xib */; };
+		E1A831371A48B96900CF3BF9 /* PCFLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1A831361A48B96900CF3BF9 /* PCFLoginViewController.xib */; };
+		E1A831391A48D40300CF3BF9 /* Pivotal.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1A831381A48D40300CF3BF9 /* Pivotal.plist */; };
+		E1A8313C1A48D47200CF3BF9 /* PCFConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A8313A1A48D47200CF3BF9 /* PCFConfig.h */; };
+		E1A8313D1A48D47200CF3BF9 /* PCFConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A8313B1A48D47200CF3BF9 /* PCFConfig.m */; };
+		E1A831401A49E71E00CF3BF9 /* PCFToken.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A8313E1A49E71E00CF3BF9 /* PCFToken.h */; };
+		E1A831411A49E71E00CF3BF9 /* PCFToken.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A8313F1A49E71E00CF3BF9 /* PCFToken.m */; };
+		E1A831421A4B125B00CF3BF9 /* PCFAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BF42D61A422AC600B4707D /* PCFAuth.framework */; };
+		E1A831431A4B125B00CF3BF9 /* PCFAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E1BF42D61A422AC600B4707D /* PCFAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E1BF42E21A422AC600B4707D /* PCFAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BF42D61A422AC600B4707D /* PCFAuth.framework */; };
 		E1BF42E91A422AC600B4707D /* PCFAuthTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BF42E81A422AC600B4707D /* PCFAuthTests.m */; };
 		E1BF42F61A422E8D00B4707D /* PCFAuth.h in Headers */ = {isa = PBXBuildFile; fileRef = E1BF42F41A422E8D00B4707D /* PCFAuth.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -31,6 +72,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E1A831441A4B125B00CF3BF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1BF42CD1A422AC600B4707D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1BF42D51A422AC600B4707D;
+			remoteInfo = PCFAuth;
+		};
 		E1BF42E31A422AC600B4707D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E1BF42CD1A422AC600B4707D /* Project object */;
@@ -41,6 +89,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		E1A831461A4B125B00CF3BF9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E1A831431A4B125B00CF3BF9 /* PCFAuth.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1BF42FB1A422F1100B4707D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -55,6 +114,50 @@
 
 /* Begin PBXFileReference section */
 		E14D1ACC1A4230140073322C /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = PCFAuthTests/ThirdParty/OCMockiOS/libOCMock.a; sourceTree = "<group>"; };
+		E1A830C11A44910900CF3BF9 /* PCFAFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		E1A830C21A44910900CF3BF9 /* PCFAFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		E1A830C31A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
+		E1A830C41A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
+		E1A830C51A44910900CF3BF9 /* PCFAFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFHTTPSessionManager.h; sourceTree = "<group>"; };
+		E1A830C61A44910900CF3BF9 /* PCFAFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFHTTPSessionManager.m; sourceTree = "<group>"; };
+		E1A830C71A44910900CF3BF9 /* PCFAFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFNetworking.h; sourceTree = "<group>"; };
+		E1A830C81A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		E1A830C91A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		E1A830CA1A44910900CF3BF9 /* PCFAFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFSecurityPolicy.h; sourceTree = "<group>"; };
+		E1A830CB1A44910900CF3BF9 /* PCFAFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFSecurityPolicy.m; sourceTree = "<group>"; };
+		E1A830CC1A44910900CF3BF9 /* PCFAFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFURLConnectionOperation.h; sourceTree = "<group>"; };
+		E1A830CD1A44910900CF3BF9 /* PCFAFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFURLConnectionOperation.m; sourceTree = "<group>"; };
+		E1A830CE1A44910900CF3BF9 /* PCFAFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFURLRequestSerialization.h; sourceTree = "<group>"; };
+		E1A830CF1A44910900CF3BF9 /* PCFAFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFURLRequestSerialization.m; sourceTree = "<group>"; };
+		E1A830D01A44910900CF3BF9 /* PCFAFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFURLResponseSerialization.h; sourceTree = "<group>"; };
+		E1A830D11A44910900CF3BF9 /* PCFAFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFURLResponseSerialization.m; sourceTree = "<group>"; };
+		E1A830D21A44910900CF3BF9 /* PCFAFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFURLSessionManager.h; sourceTree = "<group>"; };
+		E1A830D31A44910900CF3BF9 /* PCFAFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFURLSessionManager.m; sourceTree = "<group>"; };
+		E1A830E91A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PCFAFHTTPRequestSerializer+OAuth2.h"; sourceTree = "<group>"; };
+		E1A830EA1A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PCFAFHTTPRequestSerializer+OAuth2.m"; sourceTree = "<group>"; };
+		E1A830EB1A4491B000CF3BF9 /* PCFAFOAuth2Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFOAuth2Manager.h; sourceTree = "<group>"; };
+		E1A830EC1A4491B000CF3BF9 /* PCFAFOAuth2Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFOAuth2Manager.m; sourceTree = "<group>"; };
+		E1A831021A44C4B000CF3BF9 /* PCFAuthSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PCFAuthSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1A831051A44C4B000CF3BF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1A831061A44C4B000CF3BF9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E1A831081A44C4B000CF3BF9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E1A831091A44C4B000CF3BF9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E1A8310B1A44C4B000CF3BF9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E1A8310C1A44C4B000CF3BF9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E1A8310F1A44C4B000CF3BF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E1A831111A44C4B000CF3BF9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E1A831141A44C4B000CF3BF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		E1A8312A1A48A0E500CF3BF9 /* PCFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFLoginViewController.h; sourceTree = "<group>"; };
+		E1A8312B1A48A0E500CF3BF9 /* PCFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFLoginViewController.m; sourceTree = "<group>"; };
+		E1A8312E1A48A9D900CF3BF9 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		E1A8312F1A48A9D900CF3BF9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		E1A831331A48AE2400CF3BF9 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		E1A831361A48B96900CF3BF9 /* PCFLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCFLoginViewController.xib; sourceTree = "<group>"; };
+		E1A831381A48D40300CF3BF9 /* Pivotal.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Pivotal.plist; sourceTree = "<group>"; };
+		E1A8313A1A48D47200CF3BF9 /* PCFConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFConfig.h; sourceTree = "<group>"; };
+		E1A8313B1A48D47200CF3BF9 /* PCFConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFConfig.m; sourceTree = "<group>"; };
+		E1A8313E1A49E71E00CF3BF9 /* PCFToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFToken.h; sourceTree = "<group>"; };
+		E1A8313F1A49E71E00CF3BF9 /* PCFToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFToken.m; sourceTree = "<group>"; };
 		E1BF42D61A422AC600B4707D /* PCFAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PCFAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1BF42DA1A422AC600B4707D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1BF42E11A422AC600B4707D /* PCFAuthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PCFAuthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +169,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E1A830FF1A44C4B000CF3BF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1A831421A4B125B00CF3BF9 /* PCFAuth.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1BF42D21A422AC600B4707D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -92,12 +203,78 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E1A830E71A44911100CF3BF9 /* AFOAuth2Manager */ = {
+			isa = PBXGroup;
+			children = (
+				E1A830E91A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.h */,
+				E1A830EA1A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.m */,
+				E1A830EB1A4491B000CF3BF9 /* PCFAFOAuth2Manager.h */,
+				E1A830EC1A4491B000CF3BF9 /* PCFAFOAuth2Manager.m */,
+			);
+			name = AFOAuth2Manager;
+			sourceTree = "<group>";
+		};
+		E1A830E81A44912700CF3BF9 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				E1A830C11A44910900CF3BF9 /* PCFAFHTTPRequestOperation.h */,
+				E1A830C21A44910900CF3BF9 /* PCFAFHTTPRequestOperation.m */,
+				E1A830C31A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.h */,
+				E1A830C41A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.m */,
+				E1A830C51A44910900CF3BF9 /* PCFAFHTTPSessionManager.h */,
+				E1A830C61A44910900CF3BF9 /* PCFAFHTTPSessionManager.m */,
+				E1A830C71A44910900CF3BF9 /* PCFAFNetworking.h */,
+				E1A830C81A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.h */,
+				E1A830C91A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.m */,
+				E1A830CA1A44910900CF3BF9 /* PCFAFSecurityPolicy.h */,
+				E1A830CB1A44910900CF3BF9 /* PCFAFSecurityPolicy.m */,
+				E1A830CC1A44910900CF3BF9 /* PCFAFURLConnectionOperation.h */,
+				E1A830CD1A44910900CF3BF9 /* PCFAFURLConnectionOperation.m */,
+				E1A830CE1A44910900CF3BF9 /* PCFAFURLRequestSerialization.h */,
+				E1A830CF1A44910900CF3BF9 /* PCFAFURLRequestSerialization.m */,
+				E1A830D01A44910900CF3BF9 /* PCFAFURLResponseSerialization.h */,
+				E1A830D11A44910900CF3BF9 /* PCFAFURLResponseSerialization.m */,
+				E1A830D21A44910900CF3BF9 /* PCFAFURLSessionManager.h */,
+				E1A830D31A44910900CF3BF9 /* PCFAFURLSessionManager.m */,
+			);
+			name = AFNetworking;
+			sourceTree = "<group>";
+		};
+		E1A831031A44C4B000CF3BF9 /* PCFAuthSample */ = {
+			isa = PBXGroup;
+			children = (
+				E1A831041A44C4B000CF3BF9 /* Supporting Files */,
+				E1A831081A44C4B000CF3BF9 /* AppDelegate.h */,
+				E1A831091A44C4B000CF3BF9 /* AppDelegate.m */,
+				E1A8312E1A48A9D900CF3BF9 /* LoginViewController.h */,
+				E1A8312F1A48A9D900CF3BF9 /* LoginViewController.m */,
+				E1A831331A48AE2400CF3BF9 /* LoginViewController.xib */,
+				E1A8310B1A44C4B000CF3BF9 /* ViewController.h */,
+				E1A8310C1A44C4B000CF3BF9 /* ViewController.m */,
+				E1A8310E1A44C4B000CF3BF9 /* Main.storyboard */,
+				E1A831131A44C4B000CF3BF9 /* LaunchScreen.xib */,
+				E1A831111A44C4B000CF3BF9 /* Images.xcassets */,
+			);
+			path = PCFAuthSample;
+			sourceTree = "<group>";
+		};
+		E1A831041A44C4B000CF3BF9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1A831381A48D40300CF3BF9 /* Pivotal.plist */,
+				E1A831051A44C4B000CF3BF9 /* Info.plist */,
+				E1A831061A44C4B000CF3BF9 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		E1BF42CC1A422AC600B4707D = {
 			isa = PBXGroup;
 			children = (
 				E14D1ACC1A4230140073322C /* libOCMock.a */,
 				E1BF42D81A422AC600B4707D /* PCFAuth */,
 				E1BF42E51A422AC600B4707D /* PCFAuthTests */,
+				E1A831031A44C4B000CF3BF9 /* PCFAuthSample */,
 				E1BF42D71A422AC600B4707D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,6 +285,7 @@
 				E1BF42D61A422AC600B4707D /* PCFAuth.framework */,
 				E1BF42E11A422AC600B4707D /* PCFAuthTests.xctest */,
 				E1BF42FD1A422F1100B4707D /* libPCFAuth-lib.a */,
+				E1A831021A44C4B000CF3BF9 /* PCFAuthSample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,6 +296,11 @@
 				E1BF42D91A422AC600B4707D /* Supporting Files */,
 				E1BF42F41A422E8D00B4707D /* PCFAuth.h */,
 				E1BF42F51A422E8D00B4707D /* PCFAuth.m */,
+				E1A8313E1A49E71E00CF3BF9 /* PCFToken.h */,
+				E1A8313F1A49E71E00CF3BF9 /* PCFToken.m */,
+				E1A8312A1A48A0E500CF3BF9 /* PCFLoginViewController.h */,
+				E1A8312B1A48A0E500CF3BF9 /* PCFLoginViewController.m */,
+				E1A831361A48B96900CF3BF9 /* PCFLoginViewController.xib */,
 			);
 			path = PCFAuth;
 			sourceTree = "<group>";
@@ -125,6 +308,10 @@
 		E1BF42D91A422AC600B4707D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E1A830E71A44911100CF3BF9 /* AFOAuth2Manager */,
+				E1A830E81A44912700CF3BF9 /* AFNetworking */,
+				E1A8313A1A48D47200CF3BF9 /* PCFConfig.h */,
+				E1A8313B1A48D47200CF3BF9 /* PCFConfig.m */,
 				E1BF42DA1A422AC600B4707D /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -154,13 +341,47 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1A830E11A44910900CF3BF9 /* PCFAFURLRequestSerialization.h in Headers */,
+				E1A830DD1A44910900CF3BF9 /* PCFAFSecurityPolicy.h in Headers */,
+				E1A830DA1A44910900CF3BF9 /* PCFAFNetworking.h in Headers */,
+				E1A830DB1A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.h in Headers */,
+				E1A830ED1A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.h in Headers */,
+				E1A8312C1A48A0E500CF3BF9 /* PCFLoginViewController.h in Headers */,
+				E1A830D81A44910900CF3BF9 /* PCFAFHTTPSessionManager.h in Headers */,
+				E1A830E51A44910900CF3BF9 /* PCFAFURLSessionManager.h in Headers */,
+				E1A830D61A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.h in Headers */,
+				E1A830EF1A4491B000CF3BF9 /* PCFAFOAuth2Manager.h in Headers */,
+				E1A831401A49E71E00CF3BF9 /* PCFToken.h in Headers */,
 				E1BF42F61A422E8D00B4707D /* PCFAuth.h in Headers */,
+				E1A830E31A44910900CF3BF9 /* PCFAFURLResponseSerialization.h in Headers */,
+				E1A830D41A44910900CF3BF9 /* PCFAFHTTPRequestOperation.h in Headers */,
+				E1A8313C1A48D47200CF3BF9 /* PCFConfig.h in Headers */,
+				E1A830DF1A44910900CF3BF9 /* PCFAFURLConnectionOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		E1A831011A44C4B000CF3BF9 /* PCFAuthSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1A831221A44C4B000CF3BF9 /* Build configuration list for PBXNativeTarget "PCFAuthSample" */;
+			buildPhases = (
+				E1A830FE1A44C4B000CF3BF9 /* Sources */,
+				E1A830FF1A44C4B000CF3BF9 /* Frameworks */,
+				E1A831001A44C4B000CF3BF9 /* Resources */,
+				E1A831461A4B125B00CF3BF9 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E1A831451A4B125B00CF3BF9 /* PBXTargetDependency */,
+			);
+			name = PCFAuthSample;
+			productName = PCFAuthSample;
+			productReference = E1A831021A44C4B000CF3BF9 /* PCFAuthSample.app */;
+			productType = "com.apple.product-type.application";
+		};
 		E1BF42D51A422AC600B4707D /* PCFAuth */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E1BF42EC1A422AC600B4707D /* Build configuration list for PBXNativeTarget "PCFAuth" */;
@@ -223,6 +444,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Pivotal;
 				TargetAttributes = {
+					E1A831011A44C4B000CF3BF9 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
 					E1BF42D51A422AC600B4707D = {
 						CreatedOnToolsVersion = 6.1;
 					};
@@ -243,6 +467,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = E1BF42CC1A422AC600B4707D;
 			productRefGroup = E1BF42D71A422AC600B4707D /* Products */;
@@ -253,15 +478,29 @@
 				E1BF42FC1A422F1100B4707D /* PCFAuth-lib */,
 				E1BF43161A422F5300B4707D /* PCFUniversal */,
 				E1BF42E01A422AC600B4707D /* PCFAuthTests */,
+				E1A831011A44C4B000CF3BF9 /* PCFAuthSample */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E1A831001A44C4B000CF3BF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1A831101A44C4B000CF3BF9 /* Main.storyboard in Resources */,
+				E1A831151A44C4B000CF3BF9 /* LaunchScreen.xib in Resources */,
+				E1A831121A44C4B000CF3BF9 /* Images.xcassets in Resources */,
+				E1A831391A48D40300CF3BF9 /* Pivotal.plist in Resources */,
+				E1A831351A48AE2400CF3BF9 /* LoginViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1BF42D41A422AC600B4707D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1A831371A48B96900CF3BF9 /* PCFLoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,10 +530,35 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E1A830FE1A44C4B000CF3BF9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1A831301A48A9D900CF3BF9 /* LoginViewController.m in Sources */,
+				E1A8310D1A44C4B000CF3BF9 /* ViewController.m in Sources */,
+				E1A8310A1A44C4B000CF3BF9 /* AppDelegate.m in Sources */,
+				E1A831071A44C4B000CF3BF9 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1BF42D11A422AC600B4707D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1A830D51A44910900CF3BF9 /* PCFAFHTTPRequestOperation.m in Sources */,
+				E1A830F01A4491B000CF3BF9 /* PCFAFOAuth2Manager.m in Sources */,
+				E1A830D71A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.m in Sources */,
+				E1A8313D1A48D47200CF3BF9 /* PCFConfig.m in Sources */,
+				E1A830EE1A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.m in Sources */,
+				E1A830DC1A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.m in Sources */,
+				E1A830E41A44910900CF3BF9 /* PCFAFURLResponseSerialization.m in Sources */,
+				E1A831411A49E71E00CF3BF9 /* PCFToken.m in Sources */,
+				E1A830E01A44910900CF3BF9 /* PCFAFURLConnectionOperation.m in Sources */,
+				E1A8312D1A48A0E500CF3BF9 /* PCFLoginViewController.m in Sources */,
+				E1A830DE1A44910900CF3BF9 /* PCFAFSecurityPolicy.m in Sources */,
+				E1A830D91A44910900CF3BF9 /* PCFAFHTTPSessionManager.m in Sources */,
+				E1A830E21A44910900CF3BF9 /* PCFAFURLRequestSerialization.m in Sources */,
+				E1A830E61A44910900CF3BF9 /* PCFAFURLSessionManager.m in Sources */,
 				E1BF42F71A422E8D00B4707D /* PCFAuth.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +582,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E1A831451A4B125B00CF3BF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E1BF42D51A422AC600B4707D /* PCFAuth */;
+			targetProxy = E1A831441A4B125B00CF3BF9 /* PBXContainerItemProxy */;
+		};
 		E1BF42E41A422AC600B4707D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E1BF42D51A422AC600B4707D /* PCFAuth */;
@@ -325,7 +594,50 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		E1A8310E1A44C4B000CF3BF9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1A8310F1A44C4B000CF3BF9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E1A831131A44C4B000CF3BF9 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1A831141A44C4B000CF3BF9 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		E1A831231A44C4B000CF3BF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PCFAuthSample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E1A831241A44C4B000CF3BF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PCFAuthSample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		E1BF42EA1A422AC600B4707D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -527,6 +839,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E1A831221A44C4B000CF3BF9 /* Build configuration list for PBXNativeTarget "PCFAuthSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1A831231A44C4B000CF3BF9 /* Debug */,
+				E1A831241A44C4B000CF3BF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		E1BF42D01A422AC600B4707D /* Build configuration list for PBXProject "PCFAuth" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
