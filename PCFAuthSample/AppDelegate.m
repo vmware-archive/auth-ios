@@ -9,14 +9,14 @@
 #import "AppDelegate.h"
 #import <PCFAuth/PCFAuth.h>
 
-@interface AppDelegate ()
-
-@end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [PCFAuth logLevel:PCFLogLevelDebug];
+    
     return YES;
 }
 

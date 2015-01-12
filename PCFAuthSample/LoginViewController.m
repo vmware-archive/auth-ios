@@ -8,26 +8,10 @@
 
 #import "LoginViewController.h"
 
-@interface LoginViewController ()
-
-@end
-
 @implementation LoginViewController
 
 - (instancetype)init {
     return [super initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
-}
-
-- (NSString *)username {
-    return @"test";
-}
-
-- (NSString *)password {
-    return @"password";
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
 }
 
 @end

@@ -19,7 +19,14 @@
 
 @implementation PCFConfig
 
-static NSString* const PCFTokenUrl = @"pivotal.data.tokenUrl";
+static NSString* const PCFConfiguration = @"PCFConfiguration";
+static NSString* const PCFPropertyMissing = @"Property missing from Pivotal.plist: ";
+
+static NSString* const PCFTokenUrl = @"pivotal.auth.tokenUrl";
+static NSString* const PCFAuthorizeUrl = @"pivotal.auth.authorizeUrl";
+static NSString* const PCFRedirectUrl = @"pivotal.auth.redirectUrl";
+static NSString* const PCFClientId = @"pivotal.auth.clientId";
+static NSString* const PCFClientSecret = @"pivotal.auth.clientSecret";
 
 
 + (PCFConfig *)sharedInstance {
@@ -35,8 +42,65 @@ static NSString* const PCFTokenUrl = @"pivotal.data.tokenUrl";
     return [[PCFConfig sharedInstance] tokenUrl];
 }
 
++ (NSString *)authorizeUrl {
+    return [[PCFConfig sharedInstance] authorizeUrl];
+}
+
++ (NSString *)redirectUrl {
+    return [[PCFConfig sharedInstance] redirectUrl];
+}
+
++ (NSString *)clientId {
+    return [[PCFConfig sharedInstance] clientId];
+}
+
++ (NSString *)clientSecret {
+    return [[PCFConfig sharedInstance] clientSecret];
+}
+
 - (NSString *)tokenUrl {
-    return [self.values objectForKey:PCFTokenUrl];
+    NSString *tokenUrl = [self.values objectForKey:PCFTokenUrl];
+    if (!tokenUrl) {
+        NSString *reason = [PCFPropertyMissing stringByAppendingString:PCFTokenUrl];
+        @throw [NSException exceptionWithName:PCFConfiguration reason:reason userInfo:nil];
+    }
+    return tokenUrl;
+}
+
+- (NSString *)authorizeUrl {
+    NSString *authorizeUrl = [self.values objectForKey:PCFAuthorizeUrl];
+    if (!authorizeUrl) {
+        NSString *reason = [PCFPropertyMissing stringByAppendingString:PCFAuthorizeUrl];
+        @throw [NSException exceptionWithName:PCFConfiguration reason:reason userInfo:nil];
+    }
+    return authorizeUrl;
+}
+
+- (NSString *)redirectUrl {
+    NSString *redirectUrl = [self.values objectForKey:PCFRedirectUrl];
+    if (!redirectUrl) {
+        NSString *reason = [PCFPropertyMissing stringByAppendingString:PCFRedirectUrl];
+        @throw [NSException exceptionWithName:PCFConfiguration reason:reason userInfo:nil];
+    }
+    return redirectUrl;
+}
+
+- (NSString *)clientId {
+    NSString *clientId = [self.values objectForKey:PCFClientId];
+    if (!clientId) {
+        NSString *reason = [PCFPropertyMissing stringByAppendingString:PCFClientId];
+        @throw [NSException exceptionWithName:PCFConfiguration reason:reason userInfo:nil];
+    }
+    return clientId;
+}
+
+- (NSString *)clientSecret {
+    NSString *clientSecret = [self.values objectForKey:PCFClientSecret];
+    if (!clientSecret) {
+        NSString *reason = [PCFPropertyMissing stringByAppendingString:PCFClientSecret];
+        @throw [NSException exceptionWithName:PCFConfiguration reason:reason userInfo:nil];
+    }
+    return clientSecret;
 }
 
 - (NSDictionary *)values {

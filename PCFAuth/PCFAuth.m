@@ -10,6 +10,7 @@
 #import "PCFToken.h"
 #import "PCFAFOAuth2Manager.h"
 #import "PCFLoginViewController.h"
+#import "PCFLogger.h"
 #import <objc/runtime.h>
 
 
@@ -17,6 +18,8 @@
 
 + (void)tokenWithBlock:(TokenBlock)block {
 
+    LogDebug(@"Checking for existing credentials.");
+    
     NSString *identifier = [@"PCFAuth:" stringByAppendingString:[[NSBundle mainBundle] bundleIdentifier]];
     PCFAFOAuthCredential *credential = [PCFAFOAuthCredential retrieveCredentialWithIdentifier:identifier];
     
@@ -26,19 +29,29 @@
         }
         
     } else {
+        
+        LogDebug(@"Launching login controller.");
+        
         PCFLoginViewController *viewController = [PCFAuth loginViewController];
         viewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         
-        id<UIApplicationDelegate> delegate = [UIApplication sharedApplication].delegate;
-        [delegate.window.rootViewController presentViewController:viewController animated:YES completion:^(void) {
-            
+        viewController.successBlock = ^(PCFAFOAuthCredential *credential) {
             NSString *identifier = [@"PCFAuth:" stringByAppendingString:[[NSBundle mainBundle] bundleIdentifier]];
-            PCFAFOAuthCredential *credential = [PCFAFOAuthCredential retrieveCredentialWithIdentifier:identifier];
+            [PCFAFOAuthCredential storeCredential:credential withIdentifier:identifier];
             
             if (block) {
                 block(credential.accessToken);
             }
-        }];
+        };
+        
+        viewController.failureBlock = ^(NSError *error) {
+            if (block) {
+                block(nil);
+            }
+        };
+        
+        id<UIApplicationDelegate> delegate = [UIApplication sharedApplication].delegate;
+        [delegate.window.rootViewController presentViewController:viewController animated:YES completion:nil];
     }
 }
 
@@ -77,6 +90,10 @@
     NSBundle *bundle = [NSBundle bundleWithIdentifier:@"io.pivotal.ios.PCFAuth"];
     NSString *name = [NSString stringWithCString:class_getName([PCFLoginViewController class]) encoding:NSASCIIStringEncoding];
     return [[PCFLoginViewController alloc] initWithNibName:name bundle:bundle];
+}
+
++ (void)logLevel:(PCFAuthLogLevel)level {
+    [PCFLogger sharedInstance].level = level;
 }
      
 @end

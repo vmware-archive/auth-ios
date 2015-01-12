@@ -9,6 +9,7 @@
 #import "PCFLoginViewController.h"
 #import "PCFAFURLRequestSerialization.h"
 #import "PCFAFOAuth2Manager.h"
+#import <PCFAuth/PCFConfig.h>
 
 @interface PCFLoginViewController ()
 @property IBOutlet UITextField *usernameField;
@@ -17,14 +18,6 @@
 
 @implementation PCFLoginViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-//    NSString *identifier = [@"PCFAuth:" stringByAppendingString:[[NSBundle mainBundle] bundleIdentifier]];
-//    PCFAFOAuthCredential *credential = [PCFAFOAuthCredential retrieveCredentialWithIdentifier:identifier];
-//
-//    [self refreshTokenGrantWithToken:credential.refreshToken];
-}
 
 - (IBAction)submit:(id)sender {
     [self grantWithUsername:[self username] password:[self password]];
@@ -38,76 +31,82 @@
     return self.passwordField.text;
 }
 
-- (void)grantWithUsername:(NSString *)username password:(NSString *)password {
-
-    void (^successBlock)(PCFAFOAuthCredential*) = ^(PCFAFOAuthCredential *credential) {
-        NSString *identifier = [@"PCFAuth:" stringByAppendingString:[[NSBundle mainBundle] bundleIdentifier]];
-        [PCFAFOAuthCredential storeCredential:credential withIdentifier:identifier];
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
-    };
-
-    void (^failBlock)(NSError*) = ^(NSError *error) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    };
-
-    NSURL *baseUrl = [NSURL URLWithString:@"http://uaa.kona.coffee.cfms-apps.com"];
-    
-    NSString *clientId = @"ios-client";
-    NSString *clientSecret = @"006d0cea91f01a82cdc57afafbbc0d26c8328964029d5b5eae920e2fdc703169";
-    NSString *tokenUrl = @"/oauth/token";
-    
-    NSString *scope = @"openid,offline_access";
-    
-    PCFAFOAuth2Manager *manager = [PCFAFOAuth2Manager clientWithBaseURL:baseUrl clientID:clientId secret:clientSecret];
-    [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:clientId password:clientSecret];
-    [manager authenticateUsingOAuthWithURLString:tokenUrl username:username password:password scope:scope success:successBlock failure:failBlock];
-}
-
 - (void)grantWithRefreshToken:(NSString *)refreshToken {
     
     void (^successBlock)(PCFAFOAuthCredential*) = ^(PCFAFOAuthCredential *credential) {
-        NSString *identifier = [@"PCFAuth:" stringByAppendingString:[[NSBundle mainBundle] bundleIdentifier]];
-        [PCFAFOAuthCredential storeCredential:credential withIdentifier:identifier];
-        
         [self dismissViewControllerAnimated:YES completion:nil];
+        self.successBlock(credential);
     };
     
     void (^failBlock)(NSError*) = ^(NSError *error) {
         [self dismissViewControllerAnimated:YES completion:nil];
+        self.failureBlock(error);
     };
-
-    NSURL *baseUrl = [NSURL URLWithString:@"http://uaa.kona.coffee.cfms-apps.com"];
     
-    NSString *clientId = @"ios-client";
-    NSString *clientSecret = @"006d0cea91f01a82cdc57afafbbc0d26c8328964029d5b5eae920e2fdc703169";
-    NSString *tokenUrl = @"/oauth/token";
+    NSURL *tokenUrl = [NSURL URLWithString:[PCFConfig tokenUrl]];
+    NSURL *baseUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", [tokenUrl scheme], [tokenUrl host]]];
+    NSString *path = [[[tokenUrl pathComponents] componentsJoinedByString:@"/"] stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
     
-    PCFAFOAuth2Manager *manager = [PCFAFOAuth2Manager clientWithBaseURL:baseUrl clientID:clientId secret:clientSecret];
-    [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:clientId password:clientSecret];
-    [manager authenticateUsingOAuthWithURLString:tokenUrl refreshToken:refreshToken success:successBlock failure:failBlock];
+    PCFAFOAuth2Manager *manager = [PCFAFOAuth2Manager clientWithBaseURL:baseUrl clientID:[PCFConfig clientId] secret:[PCFConfig clientSecret]];
+    [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:[PCFConfig clientId] password:[PCFConfig clientSecret]];
+    [manager authenticateUsingOAuthWithURLString:path refreshToken:refreshToken success:successBlock failure:failBlock];
 }
 
+- (void)grantWithUsername:(NSString *)username password:(NSString *)password {
+
+    void (^successBlock)(PCFAFOAuthCredential*) = ^(PCFAFOAuthCredential *credential) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        self.successBlock(credential);
+    };
+
+    void (^failBlock)(NSError*) = ^(NSError *error) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        self.failureBlock(error);
+    };
+
+    NSURL *tokenUrl = [NSURL URLWithString:[PCFConfig tokenUrl]];
+    NSURL *baseUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", [tokenUrl scheme], [tokenUrl host]]];
+    NSString *path = [[[tokenUrl pathComponents] componentsJoinedByString:@"/"] stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
+    
+    PCFAFOAuth2Manager *manager = [PCFAFOAuth2Manager clientWithBaseURL:baseUrl clientID:[PCFConfig clientId] secret:[PCFConfig clientSecret]];
+    [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:[PCFConfig clientId] password:[PCFConfig clientSecret]];
+    [manager authenticateUsingOAuthWithURLString:path username:username password:password scope:@"openid,offline_access" success:successBlock failure:failBlock];
+}
+
+- (void)grantWithAuthCode:(NSString *)code {
+    
+    void (^successBlock)(PCFAFOAuthCredential*) = ^(PCFAFOAuthCredential *credential) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        self.successBlock(credential);
+    };
+    
+    void (^failBlock)(NSError*) = ^(NSError *error) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        self.failureBlock(error);
+    };
+    
+    NSURL *tokenUrl = [NSURL URLWithString:[PCFConfig tokenUrl]];
+    NSURL *baseUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", [tokenUrl scheme], [tokenUrl host]]];
+    NSString *path = [[[tokenUrl pathComponents] componentsJoinedByString:@"/"] stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
+    
+    PCFAFOAuth2Manager *manager = [PCFAFOAuth2Manager clientWithBaseURL:baseUrl clientID:[PCFConfig clientId] secret:[PCFConfig clientSecret]];
+    [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:[PCFConfig clientId] password:[PCFConfig clientSecret]];
+    [manager authenticateUsingOAuthWithURLString:path code:code redirectURI:[PCFConfig redirectUrl] success:successBlock failure:failBlock];
+}
 
 - (void)grantWithAuthCodeFlow {
-    NSURL *baseUrl = [NSURL URLWithString:@"http://uaa.kona.coffee.cfms-apps.com"];
-    
-    NSString *clientId = @"ios-client";
-    NSString *authorizeUrl = @"/oauth/authorize";
-    
-    NSString *redirectUrl = @"io.pivotal.ios.PCFAuthSample://oauth2callback";
     
     NSDictionary *parameters = @{
-         //         @"state" : @"/profile",
-         @"redirect_uri" : redirectUrl,
-         @"response_type" : @"code",
-         @"client_id" : clientId,
+         @"state" : [NSUUID UUID].UUIDString,
+         @"redirect_uri" : [PCFConfig redirectUrl],
+         @"client_id" : [PCFConfig clientId],
          @"approval_prompt" : @"force",
-         @"scope" : @"openid offline_access", // TODO - find out why offline_access isn't being granted
+         @"response_type" : @"code",
+         @"scope" : @"openid,offline_access",
      };
     
     NSString *encodedParams = PCFAFQueryStringFromParametersWithEncoding(parameters, NSUTF8StringEncoding);
-    NSURL *urlWithParams = [NSURL URLWithString:[[baseUrl absoluteString] stringByAppendingFormat:@"%@?%@", authorizeUrl, encodedParams]];
+    NSURL *urlWithParams = [NSURL URLWithString:[[PCFConfig authorizeUrl] stringByAppendingFormat:@"?%@", encodedParams]];
     
     
     UIWebView *webview = [[UIWebView alloc] initWithFrame:self.view.bounds];
@@ -120,19 +119,17 @@
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    NSString *redirectUrl = @"io.pivotal.ios.PCFAuthSample://oauth2callback";
-    
-    if ([request.URL.absoluteString.lowercaseString hasPrefix:redirectUrl.lowercaseString]) {
-        NSString *code = [self oauthCodeFromRedirectURI:request.URL];
+    if ([request.URL.absoluteString.lowercaseString hasPrefix:[PCFConfig redirectUrl].lowercaseString]) {
+        NSString *code = [self oauthCodeFromRedirectURL:request.URL];
         [self grantWithAuthCode:code];
         return NO;
     }
     return YES;
 }
 
-- (NSString *)oauthCodeFromRedirectURI:(NSURL *)redirectURI {
+- (NSString *)oauthCodeFromRedirectURL:(NSURL *)redirectURL {
     __block NSString *code;
-    NSArray *pairs = [redirectURI.query componentsSeparatedByString:@"&"];
+    NSArray *pairs = [redirectURL.query componentsSeparatedByString:@"&"];
     [pairs enumerateObjectsUsingBlock:^(NSString *pair, NSUInteger idx, BOOL *stop) {
         if ([pair hasPrefix:@"code"]) {
             code = [pair substringFromIndex:5];
@@ -141,32 +138,5 @@
     }];
     return code;
 }
-
-- (void)grantWithAuthCode:(NSString *)code {
-    
-    void (^successBlock)(PCFAFOAuthCredential*) = ^(PCFAFOAuthCredential *credential) {
-        NSString *identifier = [@"PCFAuth:" stringByAppendingString:[[NSBundle mainBundle] bundleIdentifier]];
-        [PCFAFOAuthCredential storeCredential:credential withIdentifier:identifier];
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
-    };
-    
-    void (^failBlock)(NSError*) = ^(NSError *error) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    };
-    
-    NSURL *baseUrl = [NSURL URLWithString:@"http://uaa.kona.coffee.cfms-apps.com"];
-    
-    NSString *clientId = @"ios-client";
-    NSString *clientSecret = @"006d0cea91f01a82cdc57afafbbc0d26c8328964029d5b5eae920e2fdc703169";
-    NSString *tokenUrl = @"/oauth/token";
-    
-    NSString *redirectUrl = @"io.pivotal.ios.PCFAuthSample://oauth2callback";
-    
-    PCFAFOAuth2Manager *manager = [PCFAFOAuth2Manager clientWithBaseURL:baseUrl clientID:clientId secret:clientSecret];
-    [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:clientId password:clientSecret];
-    [manager authenticateUsingOAuthWithURLString:tokenUrl code:code redirectURI:redirectUrl success:successBlock failure:failBlock];
-}
-
 
 @end

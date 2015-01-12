@@ -9,9 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "PCFAuth.h"
 
+@class PCFAFOAuthCredential;
+
 @interface PCFLoginViewController : UIViewController<UIWebViewDelegate>
 
-- (IBAction)submit:(id)sender;
+@property (strong) void (^successBlock)(PCFAFOAuthCredential*);
+@property (strong) void (^failureBlock)(NSError*);
+
+- (void)grantWithRefreshToken:(NSString *)refreshToken;
+- (void)grantWithUsername:(NSString *)username password:(NSString *)password;
+- (void)grantWithAuthCode:(NSString *)code;
+- (void)grantWithAuthCodeFlow;
 
 - (NSString *)username;
 - (NSString *)password;

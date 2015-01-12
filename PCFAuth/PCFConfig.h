@@ -14,5 +14,9 @@
 + (PCFConfig *)sharedInstance;
 
 + (NSString *)tokenUrl;
++ (NSString *)authorizeUrl;
++ (NSString *)redirectUrl;
++ (NSString *)clientId;
++ (NSString *)clientSecret;
 
 @end

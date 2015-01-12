@@ -3,6 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>pivotal.auth.tokenUrl</key>
-	<string></string>
+	<string>http://uaa.kona.coffee.cfms-apps.com/oauth/token</string>
+	<key>pivotal.auth.authorizeUrl</key>
+	<string>http://uaa.kona.coffee.cfms-apps.com/oauth/authorize</string>
+	<key>pivotal.auth.redirectUrl</key>
+	<string>io.pivotal.ios.PCFAuthSample://oauth2callback</string>
+	<key>pivotal.auth.clientId</key>
+	<string>ios-client</string>
+	<key>pivotal.auth.clientSecret</key>
+	<string>006d0cea91f01a82cdc57afafbbc0d26c8328964029d5b5eae920e2fdc703169</string>
 </dict>
 </plist>
