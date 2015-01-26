@@ -10,7 +10,7 @@
 #import "PCFToken.h"
 #import "PCFAFOAuth2Manager.h"
 #import "PCFLoginViewController.h"
-#import "PCFLogger.h"
+#import "PCFAuthLogger.h"
 #import <objc/runtime.h>
 
 
@@ -25,7 +25,7 @@
     
     if ([PCFToken isValid:credential.accessToken]) {
         if (block) {
-            block(credential.accessToken);
+            block(credential.accessToken, nil);
         }
         
     } else {
@@ -40,13 +40,13 @@
             [PCFAFOAuthCredential storeCredential:credential withIdentifier:identifier];
             
             if (block) {
-                block(credential.accessToken);
+                block(credential.accessToken, nil);
             }
         };
         
         viewController.failureBlock = ^(NSError *error) {
             if (block) {
-                block(nil);
+                block(nil, error);
             }
         };
         
@@ -93,7 +93,7 @@
 }
 
 + (void)logLevel:(PCFAuthLogLevel)level {
-    [PCFLogger sharedInstance].level = level;
+    [PCFAuthLogger sharedInstance].level = level;
 }
      
 @end

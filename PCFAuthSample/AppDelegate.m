@@ -15,7 +15,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [PCFAuth logLevel:PCFLogLevelDebug];
+    [PCFAuth logLevel:PCFAuthLogLevelDebug];
     
     return YES;
 }

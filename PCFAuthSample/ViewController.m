@@ -20,7 +20,11 @@
 }
 
 - (IBAction)authorize:(id)sender {
-    [PCFAuth tokenWithBlock:^(NSString *accessToken) {
+    [PCFAuth tokenWithBlock:^(NSString *accessToken, NSError *error) {
+        
+        if (error) {
+            [[[UIAlertView alloc] initWithTitle:error.domain message:error.description delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        }
         
         NSLog(@"Logged in.  Access code is %@.", accessToken);
     }];

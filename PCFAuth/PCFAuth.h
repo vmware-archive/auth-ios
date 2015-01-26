@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <PCFAuth/PCFLoginViewController.h>
 
-typedef void(^TokenBlock)(NSString *accessToken);
+typedef void(^TokenBlock)(NSString *accessToken, NSError *error);
 
 typedef NS_ENUM(NSInteger, PCFAuthLogLevel) {
     PCFAuthLogLevelDebug = 0,

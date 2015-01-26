@@ -1,20 +1,20 @@
 //
-//  PCFLogger.m
+//  PCFAuthLogger.m
 //  PCFAuth
 //
 //  Created by DX122-XL on 2014-12-10.
 //  Copyright (c) 2014 Pivotal. All rights reserved.
 //
 
-#import "PCFLogger.h"
+#import "PCFAuthLogger.h"
 
-@implementation PCFLogger
+@implementation PCFAuthLogger
 
 + (instancetype)sharedInstance {
-    static PCFLogger *sharedInstance = nil;
+    static PCFAuthLogger *sharedInstance = nil;
     static dispatch_once_t onceToken = 0;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[PCFLogger alloc] init];
+        sharedInstance = [[PCFAuthLogger alloc] init];
         sharedInstance.level = PCFAuthLogLevelWarning;
     });
     return sharedInstance;

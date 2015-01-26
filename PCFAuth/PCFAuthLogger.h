@@ -1,5 +1,5 @@
 //
-//  PCFLogger.h
+//  PCFAuthLogger.h
 //  PCFAuth
 //
 //  Created by DX122-XL on 2014-12-10.
@@ -10,7 +10,7 @@
 
 #import "PCFAuth.h"
 
-#define DEFAULT_LOGGER [PCFLogger sharedInstance]
+#define DEFAULT_LOGGER [PCFAuthLogger sharedInstance]
 
 #define LogDebug(FMT, ...) \
     [DEFAULT_LOGGER logWithLevel:PCFAuthLogLevelDebug format:FMT, ##__VA_ARGS__]
@@ -28,7 +28,7 @@
     [DEFAULT_LOGGER logWithLevel:PCFAuthLogLevelCritical format:FMT, ##__VA_ARGS__]
 
 
-@interface PCFLogger : NSObject
+@interface PCFAuthLogger : NSObject
 
 @property PCFAuthLogLevel level;
 

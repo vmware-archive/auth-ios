@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Pivotal. All rights reserved.
 //
 
-#import "PCFConfig.h"
+#import "PCFAuthConfig.h"
 
-@interface PCFConfig () {
+@interface PCFAuthConfig () {
     NSDictionary *_values;
 }
 
@@ -17,7 +17,7 @@
 @end
 
 
-@implementation PCFConfig
+@implementation PCFAuthConfig
 
 static NSString* const PCFConfiguration = @"PCFConfiguration";
 static NSString* const PCFPropertyMissing = @"Property missing from Pivotal.plist: ";
@@ -29,33 +29,33 @@ static NSString* const PCFClientId = @"pivotal.auth.clientId";
 static NSString* const PCFClientSecret = @"pivotal.auth.clientSecret";
 
 
-+ (PCFConfig *)sharedInstance {
-    static PCFConfig *sharedInstance = nil;
++ (PCFAuthConfig *)sharedInstance {
+    static PCFAuthConfig *sharedInstance = nil;
     static dispatch_once_t onceToken = 0;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[PCFConfig alloc] init];
+        sharedInstance = [[PCFAuthConfig alloc] init];
     });
     return sharedInstance;
 }
 
 + (NSString *)tokenUrl {
-    return [[PCFConfig sharedInstance] tokenUrl];
+    return [[PCFAuthConfig sharedInstance] tokenUrl];
 }
 
 + (NSString *)authorizeUrl {
-    return [[PCFConfig sharedInstance] authorizeUrl];
+    return [[PCFAuthConfig sharedInstance] authorizeUrl];
 }
 
 + (NSString *)redirectUrl {
-    return [[PCFConfig sharedInstance] redirectUrl];
+    return [[PCFAuthConfig sharedInstance] redirectUrl];
 }
 
 + (NSString *)clientId {
-    return [[PCFConfig sharedInstance] clientId];
+    return [[PCFAuthConfig sharedInstance] clientId];
 }
 
 + (NSString *)clientSecret {
-    return [[PCFConfig sharedInstance] clientSecret];
+    return [[PCFAuthConfig sharedInstance] clientSecret];
 }
 
 - (NSString *)tokenUrl {

@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 
-@interface PCFConfig : NSObject
+@interface PCFAuthConfig : NSObject
 
-+ (PCFConfig *)sharedInstance;
++ (PCFAuthConfig *)sharedInstance;
 
 + (NSString *)tokenUrl;
 + (NSString *)authorizeUrl;

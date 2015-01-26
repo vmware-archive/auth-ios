@@ -56,14 +56,14 @@
 		E1A831351A48AE2400CF3BF9 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1A831331A48AE2400CF3BF9 /* LoginViewController.xib */; };
 		E1A831371A48B96900CF3BF9 /* PCFLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1A831361A48B96900CF3BF9 /* PCFLoginViewController.xib */; };
 		E1A831391A48D40300CF3BF9 /* Pivotal.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1A831381A48D40300CF3BF9 /* Pivotal.plist */; };
-		E1A8313C1A48D47200CF3BF9 /* PCFConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A8313A1A48D47200CF3BF9 /* PCFConfig.h */; };
-		E1A8313D1A48D47200CF3BF9 /* PCFConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A8313B1A48D47200CF3BF9 /* PCFConfig.m */; };
+		E1A8313C1A48D47200CF3BF9 /* PCFAuthConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A8313A1A48D47200CF3BF9 /* PCFAuthConfig.h */; };
+		E1A8313D1A48D47200CF3BF9 /* PCFAuthConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A8313B1A48D47200CF3BF9 /* PCFAuthConfig.m */; };
 		E1A831401A49E71E00CF3BF9 /* PCFToken.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A8313E1A49E71E00CF3BF9 /* PCFToken.h */; };
 		E1A831411A49E71E00CF3BF9 /* PCFToken.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A8313F1A49E71E00CF3BF9 /* PCFToken.m */; };
 		E1A831421A4B125B00CF3BF9 /* PCFAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BF42D61A422AC600B4707D /* PCFAuth.framework */; };
 		E1A831431A4B125B00CF3BF9 /* PCFAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E1BF42D61A422AC600B4707D /* PCFAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E1A831491A645A8600CF3BF9 /* PCFLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A831471A645A8600CF3BF9 /* PCFLogger.h */; };
-		E1A8314A1A645A8600CF3BF9 /* PCFLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A831481A645A8600CF3BF9 /* PCFLogger.m */; };
+		E1A831491A645A8600CF3BF9 /* PCFAuthLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A831471A645A8600CF3BF9 /* PCFAuthLogger.h */; };
+		E1A8314A1A645A8600CF3BF9 /* PCFAuthLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A831481A645A8600CF3BF9 /* PCFAuthLogger.m */; };
 		E1A8314B1A64651300CF3BF9 /* PCFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A8312B1A48A0E500CF3BF9 /* PCFLoginViewController.m */; };
 		E1A8314C1A6465A800CF3BF9 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E14D1ACC1A4230140073322C /* libOCMock.a */; };
 		E1BF42E21A422AC600B4707D /* PCFAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BF42D61A422AC600B4707D /* PCFAuth.framework */; };
@@ -157,12 +157,12 @@
 		E1A831331A48AE2400CF3BF9 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		E1A831361A48B96900CF3BF9 /* PCFLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCFLoginViewController.xib; sourceTree = "<group>"; };
 		E1A831381A48D40300CF3BF9 /* Pivotal.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Pivotal.plist; sourceTree = "<group>"; };
-		E1A8313A1A48D47200CF3BF9 /* PCFConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFConfig.h; sourceTree = "<group>"; };
-		E1A8313B1A48D47200CF3BF9 /* PCFConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFConfig.m; sourceTree = "<group>"; };
+		E1A8313A1A48D47200CF3BF9 /* PCFAuthConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAuthConfig.h; sourceTree = "<group>"; };
+		E1A8313B1A48D47200CF3BF9 /* PCFAuthConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAuthConfig.m; sourceTree = "<group>"; };
 		E1A8313E1A49E71E00CF3BF9 /* PCFToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFToken.h; sourceTree = "<group>"; };
 		E1A8313F1A49E71E00CF3BF9 /* PCFToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFToken.m; sourceTree = "<group>"; };
-		E1A831471A645A8600CF3BF9 /* PCFLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFLogger.h; sourceTree = "<group>"; };
-		E1A831481A645A8600CF3BF9 /* PCFLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFLogger.m; sourceTree = "<group>"; };
+		E1A831471A645A8600CF3BF9 /* PCFAuthLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAuthLogger.h; sourceTree = "<group>"; };
+		E1A831481A645A8600CF3BF9 /* PCFAuthLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAuthLogger.m; sourceTree = "<group>"; };
 		E1BF42D61A422AC600B4707D /* PCFAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PCFAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1BF42DA1A422AC600B4707D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1BF42E11A422AC600B4707D /* PCFAuthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PCFAuthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -315,10 +315,10 @@
 			children = (
 				E1A830E71A44911100CF3BF9 /* AFOAuth2Manager */,
 				E1A830E81A44912700CF3BF9 /* AFNetworking */,
-				E1A8313A1A48D47200CF3BF9 /* PCFConfig.h */,
-				E1A8313B1A48D47200CF3BF9 /* PCFConfig.m */,
-				E1A831471A645A8600CF3BF9 /* PCFLogger.h */,
-				E1A831481A645A8600CF3BF9 /* PCFLogger.m */,
+				E1A8313A1A48D47200CF3BF9 /* PCFAuthConfig.h */,
+				E1A8313B1A48D47200CF3BF9 /* PCFAuthConfig.m */,
+				E1A831471A645A8600CF3BF9 /* PCFAuthLogger.h */,
+				E1A831481A645A8600CF3BF9 /* PCFAuthLogger.m */,
 				E1BF42DA1A422AC600B4707D /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -355,7 +355,7 @@
 				E1A830DA1A44910900CF3BF9 /* PCFAFNetworking.h in Headers */,
 				E1A830DB1A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.h in Headers */,
 				E1A830ED1A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.h in Headers */,
-				E1A831491A645A8600CF3BF9 /* PCFLogger.h in Headers */,
+				E1A831491A645A8600CF3BF9 /* PCFAuthLogger.h in Headers */,
 				E1A830D81A44910900CF3BF9 /* PCFAFHTTPSessionManager.h in Headers */,
 				E1A830E51A44910900CF3BF9 /* PCFAFURLSessionManager.h in Headers */,
 				E1A830D61A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.h in Headers */,
@@ -363,7 +363,7 @@
 				E1A831401A49E71E00CF3BF9 /* PCFToken.h in Headers */,
 				E1A830E31A44910900CF3BF9 /* PCFAFURLResponseSerialization.h in Headers */,
 				E1A830D41A44910900CF3BF9 /* PCFAFHTTPRequestOperation.h in Headers */,
-				E1A8313C1A48D47200CF3BF9 /* PCFConfig.h in Headers */,
+				E1A8313C1A48D47200CF3BF9 /* PCFAuthConfig.h in Headers */,
 				E1A830DF1A44910900CF3BF9 /* PCFAFURLConnectionOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -556,7 +556,7 @@
 				E1A830D51A44910900CF3BF9 /* PCFAFHTTPRequestOperation.m in Sources */,
 				E1A830F01A4491B000CF3BF9 /* PCFAFOAuth2Manager.m in Sources */,
 				E1A830D71A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.m in Sources */,
-				E1A8313D1A48D47200CF3BF9 /* PCFConfig.m in Sources */,
+				E1A8313D1A48D47200CF3BF9 /* PCFAuthConfig.m in Sources */,
 				E1A830EE1A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.m in Sources */,
 				E1A830DC1A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.m in Sources */,
 				E1A830E41A44910900CF3BF9 /* PCFAFURLResponseSerialization.m in Sources */,
@@ -568,7 +568,7 @@
 				E1A830E21A44910900CF3BF9 /* PCFAFURLRequestSerialization.m in Sources */,
 				E1A830E61A44910900CF3BF9 /* PCFAFURLSessionManager.m in Sources */,
 				E1BF42F71A422E8D00B4707D /* PCFAuth.m in Sources */,
-				E1A8314A1A645A8600CF3BF9 /* PCFLogger.m in Sources */,
+				E1A8314A1A645A8600CF3BF9 /* PCFAuthLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,7 +751,6 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -771,7 +770,6 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Release;
 		};
@@ -833,7 +831,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -843,7 +840,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Release;
 		};
@@ -851,7 +847,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -859,7 +854,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Release;
 		};
