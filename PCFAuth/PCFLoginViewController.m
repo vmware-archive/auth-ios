@@ -68,7 +68,7 @@
     
     PCFAFOAuth2Manager *manager = [PCFAFOAuth2Manager clientWithBaseURL:baseUrl clientID:[PCFAuthConfig clientId] secret:[PCFAuthConfig clientSecret]];
     [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:[PCFAuthConfig clientId] password:[PCFAuthConfig clientSecret]];
-    [manager authenticateUsingOAuthWithURLString:path username:username password:password scope:@"openid,offline_access" success:successBlock failure:failBlock];
+    [manager authenticateUsingOAuthWithURLString:path username:username password:password scope:@"openid+offline_access" success:successBlock failure:failBlock];
 }
 
 - (void)grantWithAuthCode:(NSString *)code {
@@ -99,7 +99,7 @@
          @"client_id" : [PCFAuthConfig clientId],
          @"approval_prompt" : @"force",
          @"response_type" : @"code",
-         @"scope" : @"openid,offline_access",
+         @"scope" : @"openid+offline_access",
      };
     
     NSString *encodedParams = PCFAFQueryStringFromParametersWithEncoding(parameters, NSUTF8StringEncoding);
