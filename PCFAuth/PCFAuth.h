@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <PCFAuth/PCFLoginViewController.h>
+#import "PCFAuthResponse.h"
+#import "PCFLoginViewController.h"
 
-typedef void(^TokenBlock)(NSString *accessToken, NSError *error);
+typedef void(^PCFAuthResponseBlock)(PCFAuthResponse*);
 
 typedef NS_ENUM(NSInteger, PCFAuthLogLevel) {
     PCFAuthLogLevelDebug = 0,
@@ -22,8 +23,12 @@ typedef NS_ENUM(NSInteger, PCFAuthLogLevel) {
 
 @interface PCFAuth : NSObject
 
-+ (void)tokenWithBlock:(TokenBlock)block;
-
 + (void)logLevel:(PCFAuthLogLevel)level;
+
++ (PCFAuthResponse *)fetchTokenWithUserPrompt:(BOOL)prompt;
+
++ (void)fetchTokenWithUserPrompt:(BOOL)prompt completionBlock:(PCFAuthResponseBlock)block;
+
++ (void)invalidateToken;
 
 @end

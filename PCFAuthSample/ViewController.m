@@ -15,19 +15,22 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (IBAction)authorize:(id)sender {
+    [PCFAuth fetchTokenWithUserPrompt:true completionBlock:^(PCFAuthResponse *response) {
+        [self handleResponse:response];
+    }];
 }
 
-- (IBAction)authorize:(id)sender {
-    [PCFAuth tokenWithBlock:^(NSString *accessToken, NSError *error) {
-        
-        if (error) {
-            [[[UIAlertView alloc] initWithTitle:error.domain message:error.description delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-        }
-        
-        NSLog(@"Logged in.  Access code is %@.", accessToken);
-    }];
+- (void)handleResponse:(PCFAuthResponse *)response {
+    if (response.error) {
+        [[[UIAlertView alloc] initWithTitle:response.error.domain message:response.error.description delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    } else {
+        NSLog(@"Logged in.  Access code is %@.", response.accessToken);
+    }
+}
+
+- (IBAction)logout:(id)sender {
+    [PCFAuth invalidateToken];
 }
 
 @end

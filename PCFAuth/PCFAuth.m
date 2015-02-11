@@ -9,91 +9,35 @@
 #import "PCFAuth.h"
 #import "PCFToken.h"
 #import "PCFAFOAuth2Manager.h"
-#import "PCFLoginViewController.h"
+#import "PCFAuthClient.h"
 #import "PCFAuthLogger.h"
-#import <objc/runtime.h>
-
+#import "PCFAuthConfig.h"
+#import "PCFAuthHandler.h"
 
 @implementation PCFAuth
-
-+ (void)tokenWithBlock:(TokenBlock)block {
-
-    LogDebug(@"Checking for existing credentials.");
-    
-    NSString *identifier = [@"PCFAuth:" stringByAppendingString:[[NSBundle mainBundle] bundleIdentifier]];
-    PCFAFOAuthCredential *credential = [PCFAFOAuthCredential retrieveCredentialWithIdentifier:identifier];
-    
-    if ([PCFToken isValid:credential.accessToken]) {
-        if (block) {
-            block(credential.accessToken, nil);
-        }
-        
-    } else {
-        
-        LogDebug(@"Launching login controller.");
-        
-        PCFLoginViewController *viewController = [PCFAuth loginViewController];
-        viewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-        
-        viewController.successBlock = ^(PCFAFOAuthCredential *credential) {
-            NSString *identifier = [@"PCFAuth:" stringByAppendingString:[[NSBundle mainBundle] bundleIdentifier]];
-            [PCFAFOAuthCredential storeCredential:credential withIdentifier:identifier];
-            
-            if (block) {
-                block(credential.accessToken, nil);
-            }
-        };
-        
-        viewController.failureBlock = ^(NSError *error) {
-            if (block) {
-                block(nil, error);
-            }
-        };
-        
-        id<UIApplicationDelegate> delegate = [UIApplication sharedApplication].delegate;
-        [delegate.window.rootViewController presentViewController:viewController animated:YES completion:nil];
-    }
-}
-
-+ (PCFLoginViewController *)loginViewController {
-    Class *classes = NULL;
-    int numClasses = objc_getClassList(NULL, 0);
-    
-    if (numClasses > 0) {
-        classes = (__unsafe_unretained Class *) malloc(sizeof(Class) * numClasses);
-        numClasses = objc_getClassList(classes, numClasses);
-        for (int i = 0; i < numClasses; i++) {
-
-            Class thisClass = classes[i];
-            Class superClass = thisClass;
-
-            do {
-                superClass = class_getSuperclass(superClass);
-            } while(superClass && superClass != [PCFLoginViewController class]);
-            
-            if (superClass == nil) {
-                continue;
-            }
-            
-            PCFLoginViewController *instance = [[thisClass alloc] init];
-            free(classes);
-            return instance;
-            
-        }
-        free(classes);
-    }
-    
-    return [PCFAuth defaultClass];
-}
-
-+ (PCFLoginViewController *)defaultClass {
-    NSBundle *bundle = [NSBundle bundleWithIdentifier:@"io.pivotal.ios.PCFAuth"];
-    NSString *name = [NSString stringWithCString:class_getName([PCFLoginViewController class]) encoding:NSASCIIStringEncoding];
-    return [[PCFLoginViewController alloc] initWithNibName:name bundle:bundle];
-}
 
 + (void)logLevel:(PCFAuthLogLevel)level {
     [PCFAuthLogger sharedInstance].level = level;
 }
-     
+
++ (PCFAuthHandler *)handler {
+    static PCFAuthHandler *handler = nil;
+    static dispatch_once_t onceToken = 0;
+    dispatch_once(&onceToken, ^{
+        handler = [[PCFAuthHandler alloc] init];
+    });
+    return handler;
+}
+
++ (PCFAuthResponse *)fetchTokenWithUserPrompt:(BOOL)prompt {
+    return [self.handler fetchTokenWithUserPrompt:prompt];
+}
+
++ (void)fetchTokenWithUserPrompt:(BOOL)prompt completionBlock:(PCFAuthResponseBlock)block {
+    [self.handler fetchTokenWithUserPrompt:prompt completionBlock:block];
+}
++ (void)invalidateToken {
+    [self.handler invalidateToken];
+}
+
 @end

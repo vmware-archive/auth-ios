@@ -15,15 +15,4 @@
     return [super initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    NSString *identifier = [@"PCFAuth:" stringByAppendingString:[[NSBundle mainBundle] bundleIdentifier]];
-    PCFAFOAuthCredential *credential = [PCFAFOAuthCredential retrieveCredentialWithIdentifier:identifier];
-    
-    if (credential.refreshToken) {
-        [self grantWithRefreshToken:credential.refreshToken];
-    }
-}
-
 @end

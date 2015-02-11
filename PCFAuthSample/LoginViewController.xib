@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
@@ -18,14 +19,23 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yM-JG-uyO">
                     <rect key="frame" x="50" y="215" width="500" height="30"/>
-                    <state key="normal" title="Login">
+                    <state key="normal" title="Password Flow">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="submit:" destination="-1" eventType="touchUpInside" id="Cp2-Wp-eBU"/>
+                        <action selector="grantTypePassword:" destination="-1" eventType="touchUpInside" id="CKu-WF-zf1"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="test" borderStyle="roundedRect" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gpx-94-Nb0">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFT-Kh-lCS">
+                    <rect key="frame" x="50" y="315" width="500" height="30"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="cancel:" destination="-1" eventType="touchUpInside" id="YNr-pe-UJ3"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="test" borderStyle="roundedRect" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gpx-94-Nb0">
                     <rect key="frame" x="50" y="100" width="500" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -35,6 +45,15 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIz-R6-GS2">
+                    <rect key="frame" x="50" y="265" width="500" height="30"/>
+                    <state key="normal" title="Auth Code Flow">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="grantTypeAuthCode:" destination="-1" eventType="touchUpInside" id="PAp-vq-1nk"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -42,11 +61,17 @@
                 <constraint firstItem="4md-R0-nMh" firstAttribute="top" secondItem="gpx-94-Nb0" secondAttribute="bottom" constant="25" id="5US-Is-qiP"/>
                 <constraint firstAttribute="trailing" secondItem="5yM-JG-uyO" secondAttribute="trailing" constant="50" id="6RH-lJ-ROD"/>
                 <constraint firstAttribute="trailing" secondItem="gpx-94-Nb0" secondAttribute="trailing" constant="50" id="CMc-WS-anB"/>
+                <constraint firstItem="dFT-Kh-lCS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="Fzb-u4-2rK"/>
                 <constraint firstItem="4md-R0-nMh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="IPs-16-RSU"/>
+                <constraint firstAttribute="trailing" secondItem="dFT-Kh-lCS" secondAttribute="trailing" constant="50" id="SHs-qI-K38"/>
+                <constraint firstItem="dFT-Kh-lCS" firstAttribute="top" secondItem="VIz-R6-GS2" secondAttribute="bottom" constant="20" id="WgL-2V-aPO"/>
+                <constraint firstItem="VIz-R6-GS2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="d2K-r4-d7O"/>
                 <constraint firstItem="gpx-94-Nb0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="gcp-b7-9WV"/>
                 <constraint firstAttribute="trailing" secondItem="4md-R0-nMh" secondAttribute="trailing" constant="50" id="iNg-Dx-dar"/>
                 <constraint firstItem="gpx-94-Nb0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="mey-Br-f19"/>
+                <constraint firstAttribute="trailing" secondItem="VIz-R6-GS2" secondAttribute="trailing" constant="50" id="s2U-Y5-TUd"/>
                 <constraint firstItem="5yM-JG-uyO" firstAttribute="top" secondItem="4md-R0-nMh" secondAttribute="bottom" constant="30" id="urG-Kx-HEy"/>
+                <constraint firstItem="VIz-R6-GS2" firstAttribute="top" secondItem="5yM-JG-uyO" secondAttribute="bottom" constant="20" id="wx1-lm-5AY"/>
             </constraints>
             <point key="canvasLocation" x="473" y="241"/>
         </view>

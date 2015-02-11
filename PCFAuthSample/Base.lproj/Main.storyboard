@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -26,12 +27,24 @@
                                     <action selector="authorize:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="r6d-Ar-ANg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCp-PP-1tO">
+                                <rect key="frame" x="36" y="125" width="528" height="30"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logout:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="YuH-ro-og4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="TCp-PP-1tO" secondAttribute="trailing" constant="20" id="0LS-pV-0gk"/>
+                            <constraint firstItem="TCp-PP-1tO" firstAttribute="top" secondItem="iG8-Pm-d22" secondAttribute="bottom" constant="25" id="23y-kj-JbU"/>
                             <constraint firstItem="iG8-Pm-d22" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="2ot-J8-ov3"/>
                             <constraint firstItem="iG8-Pm-d22" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="50" id="PVZ-wD-WJk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iG8-Pm-d22" secondAttribute="trailing" constant="20" id="apU-5U-d7P"/>
+                            <constraint firstItem="TCp-PP-1tO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="pHg-2E-eQE"/>
                         </constraints>
                     </view>
                 </viewController>

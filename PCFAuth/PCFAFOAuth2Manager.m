@@ -235,7 +235,11 @@ static NSError * PCFAFErrorFromRFC6749Section5_2Error(id object) {
             success(credential);
         }
     } failure:^(__unused PCFAFHTTPRequestOperation *operation, NSError *error) {
-        if (failure) {
+        if (failure) {;
+            // __BEGIN_EDIT__: Use the actual HTTP status for error code
+            NSHTTPURLResponse *response = (NSHTTPURLResponse *) operation.response;
+            error = [[NSError alloc] initWithDomain:error.domain code:response.statusCode userInfo:error.userInfo];
+            // __END_EDIT__
             failure(error);
         }
     }];

@@ -7,7 +7,6 @@
 //
 
 #import <PCFAuth/PCFAuth.h>
-#import <PCFAuth/PCFLoginViewController.h>
 
 @interface LoginViewController : PCFLoginViewController
 

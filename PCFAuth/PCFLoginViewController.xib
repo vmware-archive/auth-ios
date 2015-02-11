@@ -36,7 +36,16 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="submit:" destination="-1" eventType="touchUpInside" id="odO-MA-FYN"/>
+                                <action selector="grantTypePassword:" destination="-1" eventType="touchUpInside" id="739-MB-OYA"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKq-aJ-OX3">
+                            <rect key="frame" x="10" y="170" width="540" height="30"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="cancel:" destination="-1" eventType="touchUpInside" id="KcT-bm-rNh"/>
                             </connections>
                         </button>
                     </subviews>
@@ -44,10 +53,13 @@
                     <constraints>
                         <constraint firstItem="Ea9-mh-tCj" firstAttribute="leading" secondItem="aym-3G-kkx" secondAttribute="leading" constant="10" id="1x8-Zw-8J2"/>
                         <constraint firstItem="1Ws-kQ-AOJ" firstAttribute="top" secondItem="aym-3G-kkx" secondAttribute="top" constant="20" id="48p-Xk-Z4W"/>
+                        <constraint firstAttribute="trailing" secondItem="YKq-aJ-OX3" secondAttribute="trailing" constant="10" id="83h-DI-Ur4"/>
                         <constraint firstItem="1Ws-kQ-AOJ" firstAttribute="leading" secondItem="aym-3G-kkx" secondAttribute="leading" constant="10" id="CJV-Ov-xxp"/>
+                        <constraint firstItem="YKq-aJ-OX3" firstAttribute="top" secondItem="Ea9-mh-tCj" secondAttribute="bottom" constant="20" id="GKc-ws-vbc"/>
                         <constraint firstAttribute="trailing" secondItem="Ea9-mh-tCj" secondAttribute="trailing" constant="10" id="Qvj-Ho-TLp"/>
                         <constraint firstAttribute="trailing" secondItem="uXi-9r-6tV" secondAttribute="trailing" constant="10" id="VMN-0N-AUk"/>
                         <constraint firstItem="uXi-9r-6tV" firstAttribute="top" secondItem="1Ws-kQ-AOJ" secondAttribute="bottom" constant="20" id="VmO-ju-hKY"/>
+                        <constraint firstItem="YKq-aJ-OX3" firstAttribute="leading" secondItem="aym-3G-kkx" secondAttribute="leading" constant="10" id="jZH-Fq-X6v"/>
                         <constraint firstItem="Ea9-mh-tCj" firstAttribute="top" secondItem="uXi-9r-6tV" secondAttribute="bottom" constant="20" id="jzY-Gu-F5e"/>
                         <constraint firstItem="uXi-9r-6tV" firstAttribute="leading" secondItem="aym-3G-kkx" secondAttribute="leading" constant="10" id="m3X-2M-WCv"/>
                         <constraint firstAttribute="trailing" secondItem="1Ws-kQ-AOJ" secondAttribute="trailing" constant="10" id="mhl-zd-p8V"/>
