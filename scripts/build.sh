@@ -69,9 +69,9 @@ lipo "${SIMULATOR_LIBRARY_PATH}/${FRAMEWORK_NAME}" "${DEVICE_LIBRARY_PATH}/${FRA
 ######################
 
 if [ "${CONFIGURATION}" == "Release" ]; then
-    rm -rf "${HOME}/Desktop/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/"
-    mkdir "${HOME}/Desktop/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/"
-    cp -r "${FRAMEWORK}" "${HOME}/Desktop/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/"
+    rm -rf "build/release-universal/"
+    mkdir -p "build/release-universal/"
+    cp -r "${FRAMEWORK}" "build/release-universal/"
 fi
 
 
@@ -81,11 +81,9 @@ fi
 
 if [ ${REVEAL_ARCHIVE_IN_FINDER} = true ]; then
     if [ "${CONFIGURATION}" == "Release" ]; then
-        open "${HOME}/Desktop/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/"
+        open "build/release-universal/"
     else
         open "${UNIVERSAL_LIBRARY_DIR}/"
     fi
 fi
-
-
 
