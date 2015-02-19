@@ -13,16 +13,22 @@
 #import "PCFAuthConfig.h"
 #import "PCFToken.h"
 
+@interface PCFAuthHandler ()
+
+@property BOOL disableUserPrompt;
+
+@end
+
 @implementation PCFAuthHandler
 
 static NSString *PCFAuthIdentifierPrefix = @"PCFAuth:";
 
-- (PCFAuthResponse *)fetchTokenWithUserPrompt:(BOOL)prompt {
+- (PCFAuthResponse *)fetchToken {
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     
     __block PCFAuthResponse *result;
     
-    [self fetchTokenWithUserPrompt:prompt completionBlock:^(PCFAuthResponse *response) {
+    [self fetchTokenWithCompletionBlock:^(PCFAuthResponse *response) {
         result = response;
         
         dispatch_semaphore_signal(semaphore);
@@ -33,7 +39,7 @@ static NSString *PCFAuthIdentifierPrefix = @"PCFAuth:";
     return result;
 }
 
-- (void)fetchTokenWithUserPrompt:(BOOL)prompt completionBlock:(PCFAuthResponseBlock)block {
+- (void)fetchTokenWithCompletionBlock:(PCFAuthResponseBlock)block {
     
     LogDebug(@"Checking for existing credentials.");
     
@@ -47,7 +53,7 @@ static NSString *PCFAuthIdentifierPrefix = @"PCFAuth:";
     } else if (credential.refreshToken) {
         [self refreshTokenWithCredential:credential completionBlock:block];
         
-    } else if (prompt) {
+    } else if (!self.disableUserPrompt) {
         [self showLoginControllerWithBlock:block];
         
     } else if (block) {
@@ -67,7 +73,7 @@ static NSString *PCFAuthIdentifierPrefix = @"PCFAuth:";
         } else {
             LogDebug(@"Received error.code: %d", error.code);
             
-            if (error.code == 401) {
+            if (error.code == 401 && !self.disableUserPrompt) {
                 [self showLoginControllerWithBlock:block];
                 return;
             }
@@ -122,6 +128,10 @@ static NSString *PCFAuthIdentifierPrefix = @"PCFAuth:";
     for (NSHTTPCookie* cookie in authCookies) {
         [cookies deleteCookie:cookie];
     }
+}
+
+- (void)disableUserPrompt:(BOOL)disable {
+    self.disableUserPrompt = disable;
 }
 
 - (PCFAFOAuthCredential *)retrieveCredential {

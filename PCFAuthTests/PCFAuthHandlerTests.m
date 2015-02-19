@@ -62,17 +62,17 @@
     self.authUrl = [[NSString alloc] initWithFormat:@"http://%@.com", [NSUUID UUID].UUIDString];
 }
 
-- (void)testFetchTokenWithUserPrompt {
+- (void)testFetchToken {
     PCFAuthHandler *authHandler = OCMPartialMock([[PCFAuthHandler alloc] init]);
     __block PCFAuthResponse *response = OCMClassMock([PCFAuthResponse class]);
     
-    OCMStub([authHandler fetchTokenWithUserPrompt:self.prompt completionBlock:[OCMArg any]]).andDo(^(NSInvocation *invocation) {
+    OCMStub([authHandler fetchTokenWithCompletionBlock:[OCMArg any]]).andDo(^(NSInvocation *invocation) {
         void (^block)(PCFAuthResponse*);
-        [invocation getArgument:&block atIndex:3];
+        [invocation getArgument:&block atIndex:2];
         block(response);
     });
     
-    XCTAssertEqual(response, [authHandler fetchTokenWithUserPrompt:self.prompt]);
+    XCTAssertEqual(response, [authHandler fetchToken]);
 }
 
 - (void)testFetchTokenCompletionBlockWithValidToken {
@@ -85,7 +85,7 @@
     
     XCTestExpectation *expectation = [self expectationWithDescription:@""];
     
-    [authHandler fetchTokenWithUserPrompt:self.prompt completionBlock:^void(PCFAuthResponse *response){
+    [authHandler fetchTokenWithCompletionBlock:^void(PCFAuthResponse *response){
         XCTAssertEqual(response.accessToken, self.token);
         [expectation fulfill];
     }];
@@ -109,13 +109,13 @@
     OCMStub([pcfToken isValid:[OCMArg any]]).andReturn(false);
     OCMStub([authHandler refreshTokenWithCredential:[OCMArg any] completionBlock:[OCMArg any]]).andDo(nil);
     
-    [authHandler fetchTokenWithUserPrompt:self.prompt completionBlock:block];
+    [authHandler fetchTokenWithCompletionBlock:block];
     
     OCMVerify([authHandler retrieveCredential]);
     OCMVerify([authHandler refreshTokenWithCredential:credential completionBlock:block]);
 }
 
-- (void)testFetchTokenCompletionBlockWithNoTokenAndUserPrompt {
+- (void)testFetchTokenCompletionBlockWithNoTokenAndUserPromptEnabled {
     id pcfToken = OCMClassMock([PCFToken class]);
     PCFAuthResponseBlock block = ^void(PCFAuthResponse *response){};
     PCFAuthHandler *authHandler = OCMPartialMock([[PCFAuthHandler alloc] init]);
@@ -125,7 +125,7 @@
     OCMStub([pcfToken isValid:[OCMArg any]]).andReturn(false);
     OCMStub([authHandler showLoginControllerWithBlock:[OCMArg any]]).andDo(nil);
     
-    [authHandler fetchTokenWithUserPrompt:true completionBlock:block];
+    [authHandler fetchTokenWithCompletionBlock:block];
     
     OCMVerify([authHandler retrieveCredential]);
     OCMVerify([pcfToken isValid:self.token]);
@@ -134,22 +134,21 @@
     [pcfToken stopMocking];
 }
 
-- (void)testFetchTokenCompletionBlockWithNoTokenAndNoUserPrompt {
+- (void)testFetchTokenCompletionBlockWithNoTokenAndUserPromptDisabled {
     id pcfToken = OCMClassMock([PCFToken class]);
+    PCFAuthResponseBlock block = ^void(PCFAuthResponse *response){};
     PCFAuthHandler *authHandler = OCMPartialMock([[PCFAuthHandler alloc] init]);
     PCFAFOAuthCredential *credential = [[PCFAFOAuthCredential alloc] initWithOAuthToken:self.token tokenType:self.tokenType];
-    
+
+    [authHandler disableUserPrompt:true];
+
     OCMStub([authHandler retrieveCredential]).andReturn(credential);
     OCMStub([pcfToken isValid:[OCMArg any]]).andReturn(false);
+    OCMStub([authHandler showLoginControllerWithBlock:[OCMArg any]]).andDo(^(NSInvocation *invocation) {
+        XCTAssert(false, @"This should not be called.");
+    });
     
-    XCTestExpectation *expectation = [self expectationWithDescription:@""];
-    
-    [authHandler fetchTokenWithUserPrompt:false completionBlock:^void(PCFAuthResponse *response){
-        XCTAssertNotNil(response.error);
-        [expectation fulfill];
-    }];
-    
-    [self waitForExpectationsWithTimeout:1 handler:nil];
+    [authHandler fetchTokenWithCompletionBlock:block];
     
     OCMVerify([authHandler retrieveCredential]);
     OCMVerify([pcfToken isValid:self.token]);
@@ -157,7 +156,7 @@
     [pcfToken stopMocking];
 }
 
-- (void)testRefreshTokenWithCredentialWith401 {
+- (void)testRefreshTokenWithCredentialWith401AndUserPromptEnabled {
     id pcfAuthClient = OCMClassMock([PCFAuthClient class]);
     PCFAuthHandler *authHandler = OCMPartialMock([[PCFAuthHandler alloc] init]);
     PCFAuthResponseBlock block = ^void(PCFAuthResponse *response){};
@@ -175,6 +174,31 @@
     [authHandler refreshTokenWithCredential:credential completionBlock:block];
     
     OCMVerify([authHandler showLoginControllerWithBlock:block]);
+    
+    [pcfAuthClient stopMocking];
+}
+
+- (void)testRefreshTokenWithCredentialWith401AndUserPromptDisabled {
+    id pcfAuthClient = OCMClassMock([PCFAuthClient class]);
+    PCFAuthHandler *authHandler = OCMPartialMock([[PCFAuthHandler alloc] init]);
+    PCFAuthResponseBlock block = ^void(PCFAuthResponse *response){};
+    
+    __block PCFAFOAuthCredential *credential = OCMClassMock([PCFAFOAuthCredential class]);
+    __block NSError *error = [[NSError alloc] initWithDomain:@"" code:401 userInfo:nil];
+    
+    [authHandler disableUserPrompt:true];
+    
+    OCMStub([authHandler showLoginControllerWithBlock:[OCMArg any]]).andDo(^(NSInvocation *invocation) {
+        XCTAssert(false, @"This should not be called.");
+    });
+    
+    OCMStub([pcfAuthClient grantWithRefreshToken:[OCMArg any] completionBlock:[OCMArg any]]).andDo(^(NSInvocation *invocation) {
+        void (^block)(PCFAFOAuthCredential *, NSError *);
+        [invocation getArgument:&block atIndex:3];
+        block(credential, error);
+    });
+    
+    [authHandler refreshTokenWithCredential:credential completionBlock:block];
     
     [pcfAuthClient stopMocking];
 }

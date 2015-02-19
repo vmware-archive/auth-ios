@@ -25,10 +25,12 @@ typedef NS_ENUM(NSInteger, PCFAuthLogLevel) {
 
 + (void)logLevel:(PCFAuthLogLevel)level;
 
-+ (PCFAuthResponse *)fetchTokenWithUserPrompt:(BOOL)prompt;
++ (PCFAuthResponse *)fetchToken;
 
-+ (void)fetchTokenWithUserPrompt:(BOOL)prompt completionBlock:(PCFAuthResponseBlock)block;
++ (void)fetchTokenWithCompletionBlock:(PCFAuthResponseBlock)block;
 
 + (void)invalidateToken;
+
++ (void)disableUserPrompt:(BOOL)disable;
 
 @end

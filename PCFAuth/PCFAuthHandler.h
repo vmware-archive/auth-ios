@@ -13,10 +13,12 @@
 
 @interface PCFAuthHandler : NSObject
 
-- (PCFAuthResponse *)fetchTokenWithUserPrompt:(BOOL)prompt;
+- (PCFAuthResponse *)fetchToken;
 
-- (void)fetchTokenWithUserPrompt:(BOOL)prompt completionBlock:(PCFAuthResponseBlock)block;
+- (void)fetchTokenWithCompletionBlock:(PCFAuthResponseBlock)block;
 
 - (void)invalidateToken;
+
+- (void)disableUserPrompt:(BOOL)disable;
 
 @end

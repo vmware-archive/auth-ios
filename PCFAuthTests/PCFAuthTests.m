@@ -21,7 +21,7 @@
 
 @interface PCFAuthTests : XCTestCase
 
-@property BOOL prompt;
+@property BOOL disable;
 
 @end
 
@@ -30,33 +30,33 @@
 - (void)setUp {
     [super setUp];
     
-    self.prompt = arc4random_uniform(2);
+    self.disable = arc4random_uniform(2);
 
 }
 
-- (void)testFetchTokenWithUserPrompt {
+- (void)testFetchToken {
     id pcfAuth = OCMClassMock([PCFAuth class]);
     PCFAuthHandler *handler = OCMClassMock([PCFAuthHandler class]);
     PCFAuthResponse *response = OCMClassMock([PCFAuthResponse class]);
     
     OCMStub([pcfAuth handler]).andReturn(handler);
-    OCMStub([handler fetchTokenWithUserPrompt:self.prompt]).andReturn(response);
+    OCMStub([handler fetchToken]).andReturn(response);
     
-    XCTAssertEqual(response, [PCFAuth fetchTokenWithUserPrompt:self.prompt]);
+    XCTAssertEqual(response, [PCFAuth fetchToken]);
     
     [pcfAuth stopMocking];
 }
 
-- (void)testFetchTokenWithUserPromptCompletionBlock {
+- (void)testFetchTokenWithCompletionBlock {
     id pcfAuth = OCMClassMock([PCFAuth class]);
     PCFAuthHandler *handler = OCMClassMock([PCFAuthHandler class]);
     PCFAuthResponseBlock block = ^void(PCFAuthResponse* response) {};
     
     OCMStub([pcfAuth handler]).andReturn(handler);
     
-    [PCFAuth fetchTokenWithUserPrompt:self.prompt completionBlock:block];
+    [PCFAuth fetchTokenWithCompletionBlock:block];
     
-    OCMVerify([handler fetchTokenWithUserPrompt:self.prompt completionBlock:block]);
+    OCMVerify([handler fetchTokenWithCompletionBlock:block]);
     
     [pcfAuth stopMocking];
 }
@@ -73,5 +73,20 @@
     
     [pcfAuth stopMocking];
 }
+
+- (void)testDisableUserPrompt {
+    id pcfAuth = OCMClassMock([PCFAuth class]);
+    PCFAuthHandler *handler = OCMClassMock([PCFAuthHandler class]);
+    
+    OCMStub([pcfAuth handler]).andReturn(handler);
+    
+    [PCFAuth disableUserPrompt:self.disable];
+    
+    OCMVerify([handler disableUserPrompt:self.disable]);
+    
+    [pcfAuth stopMocking];
+
+}
+
 
 @end

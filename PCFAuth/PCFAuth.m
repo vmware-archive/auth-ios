@@ -29,15 +29,20 @@
     return handler;
 }
 
-+ (PCFAuthResponse *)fetchTokenWithUserPrompt:(BOOL)prompt {
-    return [self.handler fetchTokenWithUserPrompt:prompt];
++ (PCFAuthResponse *)fetchToken {
+    return [self.handler fetchToken];
 }
 
-+ (void)fetchTokenWithUserPrompt:(BOOL)prompt completionBlock:(PCFAuthResponseBlock)block {
-    [self.handler fetchTokenWithUserPrompt:prompt completionBlock:block];
++ (void)fetchTokenWithCompletionBlock:(PCFAuthResponseBlock)block {
+    [self.handler fetchTokenWithCompletionBlock:block];
 }
+
 + (void)invalidateToken {
     [self.handler invalidateToken];
+}
+
++ (void)disableUserPrompt:(BOOL)disable {
+    [self.handler disableUserPrompt:disable];
 }
 
 @end
