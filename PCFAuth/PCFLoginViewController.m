@@ -18,9 +18,6 @@
     UIWebView *_webview;
 }
 
-@property IBOutlet UITextField *usernameField;
-@property IBOutlet UITextField *passwordField;
-
 @end
 
 @implementation PCFLoginViewController
