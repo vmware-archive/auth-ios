@@ -346,7 +346,7 @@
     XCTAssertEqual(clientId, dictionary[@"client_id"]);
     XCTAssertEqualObjects(@"force", dictionary[@"approval_prompt"]);
     XCTAssertEqualObjects(@"code", dictionary[@"response_type"]);
-    XCTAssertEqualObjects(@"openid+offline_access", dictionary[@"scope"]);
+    XCTAssertEqualObjects(@"openid offline_access", dictionary[@"scope"]);
     
     [pcfAuthConfig stopMocking];
     [uuid stopMocking];

@@ -15,7 +15,8 @@
 
 @implementation PCFAuthClient
 
-static NSString *PCFScopes = @"openid+offline_access";
+static NSString *PCFScopeTokenEndpoint = @"openid+offline_access";
+static NSString *PCFScopeAuthorizeEndpoint = @"openid offline_access";
 
 
 + (NSURL *)tokenUrl {
@@ -45,7 +46,7 @@ static NSString *PCFScopes = @"openid+offline_access";
 }
 
 + (void)grantWithUsername:(NSString *)username password:(NSString *)password completionBlock:(PCFAuthClientBlock)block {
-    [self.manager authenticateUsingOAuthWithURLString:self.tokenUrl.path username:username password:password scope:PCFScopes success:^(PCFAFOAuthCredential *credential) {
+    [self.manager authenticateUsingOAuthWithURLString:self.tokenUrl.path username:username password:password scope:PCFScopeTokenEndpoint success:^(PCFAFOAuthCredential *credential) {
         if (block) {
             block(credential, nil);
         }
@@ -91,7 +92,7 @@ static NSString *PCFScopes = @"openid+offline_access";
         @"client_id" : [PCFAuthConfig clientId],
         @"approval_prompt" : @"force",
         @"response_type" : @"code",
-        @"scope" : PCFScopes,
+        @"scope" : PCFScopeAuthorizeEndpoint,
     };
 }
 
