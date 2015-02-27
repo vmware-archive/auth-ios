@@ -16,7 +16,7 @@
 @implementation ViewController
 
 - (IBAction)authorize:(id)sender {
-    [PCFAuth fetchTokenWithUserPrompt:true completionBlock:^(PCFAuthResponse *response) {
+    [PCFAuth fetchTokenWithCompletionBlock:^(PCFAuthResponse *response) {
         [self handleResponse:response];
     }];
 }
