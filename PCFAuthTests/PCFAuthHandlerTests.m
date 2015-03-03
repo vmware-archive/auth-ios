@@ -235,12 +235,15 @@
 - (void)testShowLoginController {
     PCFAuthResponseBlock block = ^void(PCFAuthResponse *response){};
     PCFAuthHandler *authHandler = OCMPartialMock([[PCFAuthHandler alloc] init]);
+    id navigationController = OCMClassMock([UINavigationController class]);
     UIViewController *controller = OCMClassMock([UIViewController class]);
     id application = OCMClassMock([UIApplication class]);
     id<UIApplicationDelegate> delegate = OCMProtocolMock(@protocol(UIApplicationDelegate));
     UIWindow *window = OCMClassMock([UIWindow class]);
     UIViewController *rootController = OCMClassMock([UIViewController class]);
     
+    OCMStub([navigationController alloc]).andReturn(navigationController);
+    OCMStub([navigationController initWithRootViewController:[OCMArg any]]).andReturn(navigationController);
     OCMStub([authHandler createLoginViewControllerWithBlock:[OCMArg any]]).andReturn(controller);
     OCMStub([application sharedApplication]).andReturn(application);
     OCMStub([application delegate]).andReturn(delegate);
@@ -258,9 +261,11 @@
     [self waitForExpectationsWithTimeout:1 handler:nil];
     
     OCMVerify([authHandler createLoginViewControllerWithBlock:block]);
-    OCMVerify([rootController presentViewController:controller animated:true completion:nil]);
+    OCMVerify([navigationController initWithRootViewController:controller]);
+    OCMVerify([rootController presentViewController:navigationController animated:true completion:nil]);
     
     [application stopMocking];
+    [navigationController stopMocking];
 }
 
 - (void)testCreateLoginViewController {

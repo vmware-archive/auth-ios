@@ -16,12 +16,19 @@
 
 @interface PCFLoginViewController () {
     UIWebView *_webview;
+    
 }
 
 @end
 
 @implementation PCFLoginViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+    self.navigationItem.title = @"Login";
+}
 
 - (IBAction)grantTypePassword:(id)sender {
     [PCFAuthClient grantWithUsername:self.username password:self.password completionBlock:^(PCFAFOAuthCredential *credential, NSError *error) {

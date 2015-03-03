@@ -90,10 +90,11 @@ static NSString *PCFAuthIdentifierPrefix = @"PCFAuth:";
     LogDebug(@"Launching login controller.");
     
     UIViewController *controller = [self createLoginViewControllerWithBlock:block];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         id<UIApplicationDelegate> delegate = [UIApplication sharedApplication].delegate;
-        [delegate.window.rootViewController presentViewController:controller animated:true completion:nil];
+        [delegate.window.rootViewController presentViewController:navigationController animated:true completion:nil];
     });
 }
 
