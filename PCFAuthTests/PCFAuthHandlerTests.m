@@ -51,6 +51,8 @@
 
 @implementation PCFAuthHandlerTests
 
+static NSString *PCFAuthIdentifierPrefix = @"PCFAuth:";
+
 - (void)setUp {
     [super setUp];
     
@@ -387,5 +389,118 @@
     [pcfAuthConfig stopMocking];
     [cookieStorage stopMocking];
 }
+
+- (void)testRetrieveCredential {
+    NSString *identifier = [NSUUID UUID].UUIDString;
+    NSString *prefixedIdentifier = [PCFAuthIdentifierPrefix stringByAppendingString:identifier];
+    id bundle = OCMClassMock([NSBundle class]);
+    id pcfAFOAuthCredential = OCMClassMock([PCFAFOAuthCredential class]);
+    PCFAuthHandler *authHandler = [[PCFAuthHandler alloc] init];
+    
+    OCMStub([bundle mainBundle]).andReturn(bundle);
+    OCMStub([bundle bundleIdentifier]).andReturn(identifier);
+    OCMStub([pcfAFOAuthCredential retrieveCredentialWithIdentifier:[OCMArg any]]).andReturn(pcfAFOAuthCredential);
+    
+    XCTAssertEqual(pcfAFOAuthCredential, [authHandler retrieveCredential]);
+    
+    OCMVerify([PCFAFOAuthCredential retrieveCredentialWithIdentifier:prefixedIdentifier]);
+    
+    [pcfAFOAuthCredential stopMocking];
+    [bundle stopMocking];
+}
+
+- (void)testStoreCredential {
+    NSString *identifier = [NSUUID UUID].UUIDString;
+    NSString *prefixedIdentifier = [PCFAuthIdentifierPrefix stringByAppendingString:identifier];
+    id bundle = OCMClassMock([NSBundle class]);
+    id pcfAFOAuthCredential = OCMClassMock([PCFAFOAuthCredential class]);
+    PCFAuthHandler *authHandler = [[PCFAuthHandler alloc] init];
+    
+    OCMStub([bundle mainBundle]).andReturn(bundle);
+    OCMStub([bundle bundleIdentifier]).andReturn(identifier);
+    OCMStub([pcfAFOAuthCredential storeCredential:[OCMArg any] withIdentifier:[OCMArg any]]).andReturn(true);
+    
+    [authHandler storeCredential:pcfAFOAuthCredential];
+    
+    OCMVerify([PCFAFOAuthCredential storeCredential:pcfAFOAuthCredential withIdentifier:prefixedIdentifier]);
+    
+    [pcfAFOAuthCredential stopMocking];
+    [bundle stopMocking];
+}
+
+- (void)testStoreCredentialWithLoginBlock {
+    NSString *identifier = [NSUUID UUID].UUIDString;
+    NSString *prefixedIdentifier = [PCFAuthIdentifierPrefix stringByAppendingString:identifier];
+    id bundle = OCMClassMock([NSBundle class]);
+    id pcfAFOAuthCredential = OCMClassMock([PCFAFOAuthCredential class]);
+    PCFAuthHandler *authHandler = [[PCFAuthHandler alloc] init];
+    
+    OCMStub([bundle mainBundle]).andReturn(bundle);
+    OCMStub([bundle bundleIdentifier]).andReturn(identifier);
+    OCMStub([pcfAFOAuthCredential retrieveCredentialWithIdentifier:[OCMArg any]]).andReturn(nil);
+    OCMStub([pcfAFOAuthCredential storeCredential:[OCMArg any] withIdentifier:[OCMArg any]]).andReturn(true);
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@""];
+    
+    [authHandler registerLoginObserverBlock:^() {
+        [expectation fulfill];
+    }];
+    
+    [authHandler storeCredential:pcfAFOAuthCredential];
+    
+    [self waitForExpectationsWithTimeout:1 handler:nil];
+    
+    OCMVerify([PCFAFOAuthCredential retrieveCredentialWithIdentifier:prefixedIdentifier]);
+    OCMVerify([PCFAFOAuthCredential storeCredential:pcfAFOAuthCredential withIdentifier:prefixedIdentifier]);
+    
+    [pcfAFOAuthCredential stopMocking];
+    [bundle stopMocking];
+}
+
+- (void)testDeleteCredential {
+    NSString *identifier = [NSUUID UUID].UUIDString;
+    NSString *prefixedIdentifier = [PCFAuthIdentifierPrefix stringByAppendingString:identifier];
+    id bundle = OCMClassMock([NSBundle class]);
+    id pcfAFOAuthCredential = OCMClassMock([PCFAFOAuthCredential class]);
+    PCFAuthHandler *authHandler = [[PCFAuthHandler alloc] init];
+    
+    OCMStub([bundle mainBundle]).andReturn(bundle);
+    OCMStub([bundle bundleIdentifier]).andReturn(identifier);
+    
+    [authHandler deleteCredential];
+    
+    OCMVerify([PCFAFOAuthCredential deleteCredentialWithIdentifier:prefixedIdentifier]);
+    
+    [pcfAFOAuthCredential stopMocking];
+    [bundle stopMocking];
+}
+
+- (void)testDeleteCredentialWithLogoutBlock {
+    NSString *identifier = [NSUUID UUID].UUIDString;
+    NSString *prefixedIdentifier = [PCFAuthIdentifierPrefix stringByAppendingString:identifier];
+    id bundle = OCMClassMock([NSBundle class]);
+    id pcfAFOAuthCredential = OCMClassMock([PCFAFOAuthCredential class]);
+    PCFAuthHandler *authHandler = [[PCFAuthHandler alloc] init];
+    
+    OCMStub([bundle mainBundle]).andReturn(bundle);
+    OCMStub([bundle bundleIdentifier]).andReturn(identifier);
+    OCMStub([pcfAFOAuthCredential deleteCredentialWithIdentifier:[OCMArg any]]).andReturn(true);
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@""];
+    
+    [authHandler registerLogoutObserverBlock:^() {
+        [expectation fulfill];
+    }];
+    
+    [authHandler deleteCredential];
+    
+    [self waitForExpectationsWithTimeout:1 handler:nil];
+    
+    OCMVerify([PCFAFOAuthCredential deleteCredentialWithIdentifier:prefixedIdentifier]);
+    
+    [pcfAFOAuthCredential stopMocking];
+    [bundle stopMocking];
+}
+
 
 @end

@@ -10,6 +10,10 @@
 #import "PCFAuthResponse.h"
 #import "PCFLoginViewController.h"
 
+typedef void(^PCFLoginObserverBlock)(void);
+
+typedef void(^PCFLogoutObserverBlock)(void);
+
 typedef void(^PCFAuthResponseBlock)(PCFAuthResponse*);
 
 typedef NS_ENUM(NSInteger, PCFAuthLogLevel) {
@@ -24,6 +28,14 @@ typedef NS_ENUM(NSInteger, PCFAuthLogLevel) {
 @interface PCFAuth : NSObject
 
 + (void)logLevel:(PCFAuthLogLevel)level;
+
++ (void)registerLoginObserverBlock:(PCFLoginObserverBlock)block;
+
++ (void)unregisterLoginObserverBlock;
+
++ (void)registerLogoutObserverBlock:(PCFLogoutObserverBlock)block;
+
++ (void)unregisterLogoutObserverBlock;
 
 + (PCFAuthResponse *)fetchToken;
 

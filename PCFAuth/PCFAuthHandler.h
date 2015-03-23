@@ -13,6 +13,10 @@
 
 @interface PCFAuthHandler : NSObject
 
+- (void)registerLoginObserverBlock:(PCFLoginObserverBlock)block;
+
+- (void)registerLogoutObserverBlock:(PCFLogoutObserverBlock)block;
+
 - (PCFAuthResponse *)fetchToken;
 
 - (void)fetchTokenWithCompletionBlock:(PCFAuthResponseBlock)block;

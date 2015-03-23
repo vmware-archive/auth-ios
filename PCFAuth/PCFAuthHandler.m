@@ -15,6 +15,9 @@
 
 @interface PCFAuthHandler ()
 
+@property (strong) PCFLoginObserverBlock loginBlock;
+@property (strong) PCFLogoutObserverBlock logoutBlock;
+
 @property BOOL disableUserPrompt;
 
 @end
@@ -37,6 +40,14 @@ static NSString *PCFAuthIdentifierPrefix = @"PCFAuth:";
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     
     return result;
+}
+
+- (void)registerLoginObserverBlock:(PCFLoginObserverBlock)block {
+    self.loginBlock = block;
+}
+
+- (void)registerLogoutObserverBlock:(PCFLogoutObserverBlock)block {
+    self.logoutBlock = block;
 }
 
 - (void)fetchTokenWithCompletionBlock:(PCFAuthResponseBlock)block {
@@ -142,12 +153,19 @@ static NSString *PCFAuthIdentifierPrefix = @"PCFAuth:";
 
 - (void)storeCredential:(PCFAFOAuthCredential *)credential {
     NSString *identifier = [PCFAuthIdentifierPrefix stringByAppendingString:[[NSBundle mainBundle] bundleIdentifier]];
-    [PCFAFOAuthCredential storeCredential:credential withIdentifier:identifier];
+    
+    BOOL notifyLogin = self.loginBlock && [PCFAFOAuthCredential retrieveCredentialWithIdentifier:identifier] == nil;
+    
+    if ([PCFAFOAuthCredential storeCredential:credential withIdentifier:identifier] && notifyLogin) {
+        self.loginBlock();
+    }
 }
 
 - (void)deleteCredential {
     NSString *identifier = [PCFAuthIdentifierPrefix stringByAppendingString:[[NSBundle mainBundle] bundleIdentifier]];
-    [PCFAFOAuthCredential deleteCredentialWithIdentifier:identifier];
+    if ([PCFAFOAuthCredential deleteCredentialWithIdentifier:identifier] && self.logoutBlock) {
+        self.logoutBlock();
+    }
 }
 
 @end

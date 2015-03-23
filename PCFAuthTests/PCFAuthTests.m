@@ -34,6 +34,60 @@
 
 }
 
+- (void)testRegisterLoginObserverBlock {
+    id pcfAuth = OCMClassMock([PCFAuth class]);
+    PCFLoginObserverBlock block = ^() {};
+    PCFAuthHandler *handler = OCMClassMock([PCFAuthHandler class]);
+    
+    OCMStub([pcfAuth handler]).andReturn(handler);
+    
+    [PCFAuth registerLoginObserverBlock:block];
+    
+    OCMVerify([handler registerLoginObserverBlock:block]);
+    
+    [pcfAuth stopMocking];
+}
+
+- (void)testUnregisterLoginObserverBlock {
+    id pcfAuth = OCMClassMock([PCFAuth class]);
+    PCFAuthHandler *handler = OCMClassMock([PCFAuthHandler class]);
+    
+    OCMStub([pcfAuth handler]).andReturn(handler);
+    
+    [PCFAuth unregisterLoginObserverBlock];
+    
+    OCMVerify([handler registerLoginObserverBlock:nil]);
+    
+    [pcfAuth stopMocking];
+}
+
+- (void)testRegisterLogoutObserverBlock {
+    id pcfAuth = OCMClassMock([PCFAuth class]);
+    PCFLogoutObserverBlock block = ^() {};
+    PCFAuthHandler *handler = OCMClassMock([PCFAuthHandler class]);
+    
+    OCMStub([pcfAuth handler]).andReturn(handler);
+    
+    [PCFAuth registerLogoutObserverBlock:block];
+    
+    OCMVerify([handler registerLogoutObserverBlock:block]);
+    
+    [pcfAuth stopMocking];
+}
+
+- (void)testUnregisterLogoutObserverBlock {
+    id pcfAuth = OCMClassMock([PCFAuth class]);
+    PCFAuthHandler *handler = OCMClassMock([PCFAuthHandler class]);
+    
+    OCMStub([pcfAuth handler]).andReturn(handler);
+    
+    [PCFAuth unregisterLogoutObserverBlock];
+    
+    OCMVerify([handler registerLogoutObserverBlock:nil]);
+    
+    [pcfAuth stopMocking];
+}
+
 - (void)testFetchToken {
     id pcfAuth = OCMClassMock([PCFAuth class]);
     PCFAuthHandler *handler = OCMClassMock([PCFAuthHandler class]);

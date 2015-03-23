@@ -29,6 +29,22 @@
     return handler;
 }
 
++ (void)registerLoginObserverBlock:(PCFLoginObserverBlock)block {
+    [self.handler registerLoginObserverBlock:block];
+}
+
++ (void)unregisterLoginObserverBlock {
+    [self.handler registerLoginObserverBlock:nil];
+}
+
++ (void)registerLogoutObserverBlock:(PCFLogoutObserverBlock)block {
+    [self.handler registerLogoutObserverBlock:block];
+}
+
++ (void)unregisterLogoutObserverBlock {
+    [self.handler registerLogoutObserverBlock:nil];
+}
+
 + (PCFAuthResponse *)fetchToken {
     return [self.handler fetchToken];
 }
