@@ -12,4 +12,5 @@ Pod::Spec.new do |s|
 
   s.public_header_files = 'PCFAuth/**/*.h'
   s.source_files = 'PCFAuth/**/*.{h,m}'
+  s.resource_bundle = { 'PCFAuth-Resources' => 'PCFAuth/**/*.{png,xib}' }
 end

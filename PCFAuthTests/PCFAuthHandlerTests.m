@@ -24,6 +24,8 @@
 
 @interface PCFAuthHandler ()
 
+- (void)fetchTokenWithCompletionBlockWhileBlocking:(PCFAuthResponseBlock)block;
+
 - (void)refreshTokenWithCredential:(PCFAFOAuthCredential *)credential completionBlock:(PCFAuthResponseBlock)block;
 
 - (void)showLoginControllerWithBlock:(PCFAuthResponseBlock)block;
@@ -68,7 +70,7 @@ static NSString *PCFAuthIdentifierPrefix = @"PCFAuth:";
     PCFAuthHandler *authHandler = OCMPartialMock([[PCFAuthHandler alloc] init]);
     __block PCFAuthResponse *response = OCMClassMock([PCFAuthResponse class]);
     
-    OCMStub([authHandler fetchTokenWithCompletionBlock:[OCMArg any]]).andDo(^(NSInvocation *invocation) {
+    OCMStub([authHandler fetchTokenWithCompletionBlockWhileBlocking:[OCMArg any]]).andDo(^(NSInvocation *invocation) {
         void (^block)(PCFAuthResponse*);
         [invocation getArgument:&block atIndex:2];
         block(response);
@@ -87,7 +89,7 @@ static NSString *PCFAuthIdentifierPrefix = @"PCFAuth:";
     
     XCTestExpectation *expectation = [self expectationWithDescription:@""];
     
-    [authHandler fetchTokenWithCompletionBlock:^void(PCFAuthResponse *response){
+    [authHandler fetchTokenWithCompletionBlockWhileBlocking:^void(PCFAuthResponse *response){
         XCTAssertEqual(response.accessToken, self.token);
         [expectation fulfill];
     }];
@@ -111,7 +113,7 @@ static NSString *PCFAuthIdentifierPrefix = @"PCFAuth:";
     OCMStub([pcfToken isValid:[OCMArg any]]).andReturn(false);
     OCMStub([authHandler refreshTokenWithCredential:[OCMArg any] completionBlock:[OCMArg any]]).andDo(nil);
     
-    [authHandler fetchTokenWithCompletionBlock:block];
+    [authHandler fetchTokenWithCompletionBlockWhileBlocking:block];
     
     OCMVerify([authHandler retrieveCredential]);
     OCMVerify([authHandler refreshTokenWithCredential:credential completionBlock:block]);
@@ -127,7 +129,7 @@ static NSString *PCFAuthIdentifierPrefix = @"PCFAuth:";
     OCMStub([pcfToken isValid:[OCMArg any]]).andReturn(false);
     OCMStub([authHandler showLoginControllerWithBlock:[OCMArg any]]).andDo(nil);
     
-    [authHandler fetchTokenWithCompletionBlock:block];
+    [authHandler fetchTokenWithCompletionBlockWhileBlocking:block];
     
     OCMVerify([authHandler retrieveCredential]);
     OCMVerify([pcfToken isValid:self.token]);
@@ -150,7 +152,7 @@ static NSString *PCFAuthIdentifierPrefix = @"PCFAuth:";
         XCTAssert(false, @"This should not be called.");
     });
     
-    [authHandler fetchTokenWithCompletionBlock:block];
+    [authHandler fetchTokenWithCompletionBlockWhileBlocking:block];
     
     OCMVerify([authHandler retrieveCredential]);
     OCMVerify([pcfToken isValid:self.token]);
