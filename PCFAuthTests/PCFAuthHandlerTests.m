@@ -373,6 +373,30 @@ static NSString *PCFAuthIdentifierPrefix = @"PCFAuth:";
 }
 
 - (void)testInvalidateToken {
+    PCFAFOAuthCredential *credential = [[PCFAFOAuthCredential alloc] initWithOAuthToken:self.token tokenType:self.tokenType];
+    [credential setRefreshToken:self.refreshToken expiration:[NSDate dateWithTimeIntervalSinceNow:100]];
+    
+    id newCredential = OCMClassMock([PCFAFOAuthCredential class]);
+    PCFAuthHandler *authHandler = OCMPartialMock([[PCFAuthHandler alloc] init]);
+    
+    OCMStub([newCredential alloc]).andReturn(newCredential);
+    OCMStub([newCredential initWithOAuthToken:[OCMArg any] tokenType:[OCMArg any]]).andReturn(newCredential);
+    OCMStub([authHandler retrieveCredential]).andReturn(credential);
+    OCMStub([authHandler storeCredential:[OCMArg any]]).andDo(nil);
+    
+    [authHandler invalidateToken];
+    
+    XCTAssertNil([newCredential accessToken]);
+    
+    OCMVerify([newCredential initWithOAuthToken:nil tokenType:credential.tokenType]);
+    OCMVerify([newCredential setRefreshToken:credential.refreshToken expiration:[OCMArg any]]);
+    OCMVerify([authHandler retrieveCredential]);
+    OCMVerify([authHandler storeCredential:newCredential]);
+    
+    [newCredential stopMocking];
+}
+
+- (void)testLogout {
     id pcfAuthConfig = OCMClassMock([PCFAuthConfig class]);
     id cookieStorage = OCMClassMock([NSHTTPCookieStorage class]);
     PCFAuthHandler *authHandler = OCMPartialMock([[PCFAuthHandler alloc] init]);
@@ -385,9 +409,10 @@ static NSString *PCFAuthIdentifierPrefix = @"PCFAuth:";
     OCMStub([pcfAuthConfig sharedInstance]).andReturn(pcfAuthConfig);
     OCMStub([pcfAuthConfig authorizeUrl]).andReturn(self.authUrl);
     
-    [authHandler invalidateToken];
+    [authHandler logout];
     
     OCMVerify([cookieStorage deleteCookie:cookie]);
+
     [pcfAuthConfig stopMocking];
     [cookieStorage stopMocking];
 }

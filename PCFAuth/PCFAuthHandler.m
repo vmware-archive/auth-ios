@@ -141,7 +141,19 @@ static NSString *PCFAuthIdentifierPrefix = @"PCFAuth:";
 
 - (void)invalidateToken {
     
-    LogDebug(@"Deleting existing credentials.");
+    LogDebug(@"Invalidating existing access token.");
+    
+    PCFAFOAuthCredential *existingCredential = [self retrieveCredential];
+    
+    PCFAFOAuthCredential *credential = [[PCFAFOAuthCredential alloc] initWithOAuthToken:nil tokenType:existingCredential.tokenType];
+    [credential setRefreshToken:existingCredential.refreshToken expiration:[NSDate date]];
+    
+    [self storeCredential:credential];
+}
+
+- (void)logout {
+    
+    LogDebug(@"Deleting existing credential.");
     
     [self deleteCredential];
     

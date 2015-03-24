@@ -43,6 +43,8 @@ typedef NS_ENUM(NSInteger, PCFAuthLogLevel) {
 
 + (void)invalidateToken;
 
++ (void)logout;
+
 + (void)disableUserPrompt:(BOOL)disable;
 
 @end

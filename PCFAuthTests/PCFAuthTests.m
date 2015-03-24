@@ -128,6 +128,19 @@
     [pcfAuth stopMocking];
 }
 
+- (void)testLogout {
+    id pcfAuth = OCMClassMock([PCFAuth class]);
+    PCFAuthHandler *handler = OCMClassMock([PCFAuthHandler class]);
+    
+    OCMStub([pcfAuth handler]).andReturn(handler);
+    
+    [PCFAuth logout];
+    
+    OCMVerify([handler logout]);
+    
+    [pcfAuth stopMocking];
+}
+
 - (void)testDisableUserPrompt {
     id pcfAuth = OCMClassMock([PCFAuth class]);
     PCFAuthHandler *handler = OCMClassMock([PCFAuthHandler class]);

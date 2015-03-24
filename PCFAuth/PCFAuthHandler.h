@@ -23,6 +23,8 @@
 
 - (void)invalidateToken;
 
+- (void)logout;
+
 - (void)disableUserPrompt:(BOOL)disable;
 
 @end

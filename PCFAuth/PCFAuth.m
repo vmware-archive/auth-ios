@@ -57,6 +57,10 @@
     [self.handler invalidateToken];
 }
 
++ (void)logout {
+    [self.handler logout];
+}
+
 + (void)disableUserPrompt:(BOOL)disable {
     [self.handler disableUserPrompt:disable];
 }
