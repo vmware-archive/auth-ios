@@ -45,6 +45,7 @@
     
     OCMStub([controller username]).andReturn(username);
     OCMStub([controller password]).andReturn(password);
+    OCMStub([controller handleResponse:[OCMArg any] error:[OCMArg any]]).andDo(nil);
     OCMStub([pcfAuthClient grantWithUsername:[OCMArg any] password:[OCMArg any] completionBlock:[OCMArg any]]).andDo(^(NSInvocation *invocation){
         void (^completionBlock)(PCFAFOAuthCredential *, NSError *);
         [invocation getArgument:&completionBlock atIndex:4];
@@ -69,6 +70,7 @@
     UIWebView *webview = OCMClassMock([UIWebView class]);
     
     OCMStub([controller webview]).andReturn(webview);
+    OCMStub([controller handleResponse:[OCMArg any] error:[OCMArg any]]).andDo(nil);
     OCMStub([pcfAuthClient grantWithAuthCodeFlow:[OCMArg any] completionBlock:[OCMArg any]]).andDo(^(NSInvocation *invocation){
         void (^completionBlock)(PCFAFOAuthCredential *, NSError *);
         [invocation getArgument:&completionBlock atIndex:3];
