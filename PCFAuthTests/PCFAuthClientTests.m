@@ -155,13 +155,17 @@
 }
 
 - (void)testGrantWithUsernameSuccess {
+    id pcfAuthConfig = OCMClassMock([PCFAuthConfig class]);
     id pcfAuthClient = OCMPartialMock([[PCFAuthClient alloc] init]);
     PCFAFOAuth2Manager *manager = OCMClassMock([PCFAFOAuth2Manager class]);
     PCFAFOAuthCredential *credential = OCMClassMock([PCFAFOAuthCredential class]);
     
     NSString *username = [NSUUID UUID].UUIDString;
     NSString *password = [NSUUID UUID].UUIDString;
+    NSString *scopes = [NSUUID UUID].UUIDString;
     
+    OCMStub([pcfAuthConfig sharedInstance]).andReturn(pcfAuthConfig);
+    OCMStub([pcfAuthConfig scopes]).andReturn(scopes);
     OCMStub([pcfAuthClient manager]).andReturn(manager);
     OCMStub([pcfAuthClient tokenUrl]).andReturn(self.url);
     OCMStub([manager authenticateUsingOAuthWithURLString:[OCMArg any] username:[OCMArg any] password:[OCMArg any] scope:[OCMArg any] success:[OCMArg any] failure:[OCMArg any]]).andDo(^(NSInvocation *invocation) {
@@ -182,16 +186,21 @@
     [self waitForExpectationsWithTimeout:1 handler:nil];
     
     [pcfAuthClient stopMocking];
+    [pcfAuthConfig stopMocking];
 }
 
 - (void)testGrantWithUsernameFailure {
+    id pcfAuthConfig = OCMClassMock([PCFAuthConfig class]);
     id pcfAuthClient = OCMPartialMock([[PCFAuthClient alloc] init]);
     PCFAFOAuth2Manager *manager = OCMClassMock([PCFAFOAuth2Manager class]);
     NSError *error = OCMClassMock([NSError class]);
     
     NSString *username = [NSUUID UUID].UUIDString;
     NSString *password = [NSUUID UUID].UUIDString;
+    NSString *scopes = [NSUUID UUID].UUIDString;
     
+    OCMStub([pcfAuthConfig sharedInstance]).andReturn(pcfAuthConfig);
+    OCMStub([pcfAuthConfig scopes]).andReturn(scopes);
     OCMStub([pcfAuthClient manager]).andReturn(manager);
     OCMStub([pcfAuthClient tokenUrl]).andReturn(self.url);
     OCMStub([manager authenticateUsingOAuthWithURLString:[OCMArg any] username:[OCMArg any] password:[OCMArg any] scope:[OCMArg any] success:[OCMArg any] failure:[OCMArg any]]).andDo(^(NSInvocation *invocation) {
@@ -212,6 +221,7 @@
     [self waitForExpectationsWithTimeout:1 handler:nil];
     
     [pcfAuthClient stopMocking];
+    [pcfAuthConfig stopMocking];
 }
 
 - (void)testGrantWithAuthCodeSuccess {
@@ -332,12 +342,14 @@
     
     NSString *uuidString = [NSUUID UUID].UUIDString;
     NSString *clientId = [NSUUID UUID].UUIDString;
+    NSString *scopes = [NSUUID UUID].UUIDString;
     
     OCMStub([uuid UUID]).andReturn(uuid);
     OCMStub([uuid UUIDString]).andReturn(uuidString);
     OCMStub([pcfAuthConfig sharedInstance]).andReturn(pcfAuthConfig);
     OCMStub([pcfAuthConfig redirectUrl]).andReturn(self.urlString);
     OCMStub([pcfAuthConfig clientId]).andReturn(clientId);
+    OCMStub([pcfAuthConfig scopes]).andReturn(scopes);
     
     NSDictionary *dictionary = [PCFAuthClient authCodeParams];
     
@@ -346,7 +358,7 @@
     XCTAssertEqual(clientId, dictionary[@"client_id"]);
     XCTAssertEqualObjects(@"force", dictionary[@"approval_prompt"]);
     XCTAssertEqualObjects(@"code", dictionary[@"response_type"]);
-    XCTAssertEqualObjects(@"openid offline_access", dictionary[@"scope"]);
+    XCTAssertEqualObjects(scopes, dictionary[@"scope"]);
     
     [pcfAuthConfig stopMocking];
     [uuid stopMocking];

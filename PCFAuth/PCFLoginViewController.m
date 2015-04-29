@@ -71,7 +71,9 @@
 
 - (UIWebView *)webview {
     if (!_webview) {
-        _webview = [[UIWebView alloc] initWithFrame:self.view.bounds];
+        CGRect bounds = self.view.bounds;
+        bounds.origin = CGPointMake(bounds.origin.x, bounds.origin.y + [self.topLayoutGuide length]);
+        _webview = [[UIWebView alloc] initWithFrame:bounds];
         [self.view addSubview:_webview];
     }
     return _webview;

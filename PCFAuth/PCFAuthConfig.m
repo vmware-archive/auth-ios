@@ -27,6 +27,7 @@ static NSString* const PCFAuthorizeUrl = @"pivotal.auth.authorizeUrl";
 static NSString* const PCFRedirectUrl = @"pivotal.auth.redirectUrl";
 static NSString* const PCFClientId = @"pivotal.auth.clientId";
 static NSString* const PCFClientSecret = @"pivotal.auth.clientSecret";
+static NSString* const PCFScopes = @"pivotal.auth.scopes";
 
 
 + (PCFAuthConfig *)sharedInstance {
@@ -56,6 +57,10 @@ static NSString* const PCFClientSecret = @"pivotal.auth.clientSecret";
 
 + (NSString *)clientSecret {
     return [[PCFAuthConfig sharedInstance] clientSecret];
+}
+
++ (NSString *)scopes {
+    return [[PCFAuthConfig sharedInstance] scopes];
 }
 
 - (NSString *)tokenUrl {
@@ -101,6 +106,15 @@ static NSString* const PCFClientSecret = @"pivotal.auth.clientSecret";
         @throw [NSException exceptionWithName:PCFConfiguration reason:reason userInfo:nil];
     }
     return clientSecret;
+}
+
+- (NSString *)scopes {
+    NSString *scopes = [self.values objectForKey:PCFScopes];
+    if (!scopes) {
+        NSString *reason = [PCFPropertyMissing stringByAppendingString:PCFScopes];
+        @throw [NSException exceptionWithName:PCFConfiguration reason:reason userInfo:nil];
+    }
+    return scopes;
 }
 
 - (NSDictionary *)values {

@@ -25,6 +25,7 @@ static NSString* const PCFAuthorizeUrl = @"pivotal.auth.authorizeUrl";
 static NSString* const PCFRedirectUrl = @"pivotal.auth.redirectUrl";
 static NSString* const PCFClientId = @"pivotal.auth.clientId";
 static NSString* const PCFClientSecret = @"pivotal.auth.clientSecret";
+static NSString* const PCFScopes = @"pivotal.auth.scopes";
 
 - (void)setUp {
     [super setUp];
@@ -194,6 +195,39 @@ static NSString* const PCFClientSecret = @"pivotal.auth.clientSecret";
     
     OCMVerify([config values]);
     OCMVerify([dict objectForKey:PCFClientSecret]);
+    
+    [config stopMocking];
+}
+
+- (void)testScopes {
+    id config = OCMPartialMock([[PCFAuthConfig alloc] init]);
+    
+    OCMStub([config sharedInstance]).andReturn(config);
+    OCMStub([config scopes]).andReturn(self.value);
+    
+    NSString *serviceUrl = [PCFAuthConfig scopes];
+    
+    XCTAssertEqual(serviceUrl, self.value);
+    
+    OCMVerify([config sharedInstance]);
+    OCMVerify([config scopes]);
+    
+    [config stopMocking];
+}
+
+- (void)testScopesInstance {
+    id config = OCMPartialMock([[PCFAuthConfig alloc] init]);
+    NSDictionary *dict = OCMClassMock([NSDictionary class]);
+    
+    OCMStub([config values]).andReturn(dict);
+    OCMStub([dict objectForKey:[OCMArg any]]).andReturn(self.value);
+    
+    NSString *serviceUrl = [config scopes];
+    
+    XCTAssertEqual(serviceUrl, self.value);
+    
+    OCMVerify([config values]);
+    OCMVerify([dict objectForKey:PCFScopes]);
     
     [config stopMocking];
 }
