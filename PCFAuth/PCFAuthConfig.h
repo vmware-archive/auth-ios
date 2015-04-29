@@ -18,5 +18,6 @@
 + (NSString *)redirectUrl;
 + (NSString *)clientId;
 + (NSString *)clientSecret;
++ (NSString *)scopes;
 
 @end
