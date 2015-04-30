@@ -1,6 +1,6 @@
 // PCFAFHTTPRequestOperationManager.h
 //
-// Copyright (c) 2013-2014 PCFAFNetworking (http://afnetworking.com)
+// Copyright (c) 2013-2015 PCFAFNetworking (http://afnetworking.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -36,23 +36,31 @@
 #import "PCFAFSecurityPolicy.h"
 #import "PCFAFNetworkReachabilityManager.h"
 
+#ifndef NS_DESIGNATED_INITIALIZER
+#if __has_attribute(objc_designated_initializer)
+#define NS_DESIGNATED_INITIALIZER __attribute__((objc_designated_initializer))
+#else
+#define NS_DESIGNATED_INITIALIZER
+#endif
+#endif
+
 /**
  `PCFAFHTTPRequestOperationManager` encapsulates the common patterns of communicating with a web application over HTTP, including request creation, response serialization, network reachability monitoring, and security, as well as request operation management.
 
  ## Subclassing Notes
- 
+
  Developers targeting iOS 7 or Mac OS X 10.9 or later that deal extensively with a web service are encouraged to subclass `PCFAFHTTPSessionManager`, providing a class method that returns a shared singleton object on which authentication and other configuration can be shared across the application.
- 
+
  For developers targeting iOS 6 or Mac OS X 10.8 or earlier, `PCFAFHTTPRequestOperationManager` may be used to similar effect.
- 
+
  ## Methods to Override
 
  To change the behavior of all request operation construction for an `PCFAFHTTPRequestOperationManager` subclass, override `HTTPRequestOperationWithRequest:success:failure`.
 
  ## Serialization
- 
- Requests created by an HTTP client will contain default headers and encode parameters according to the `requestSerializer` property, which is an object conforming to `<PCFAFURLRequestSerialization>`. 
- 
+
+ Requests created by an HTTP client will contain default headers and encode parameters according to the `requestSerializer` property, which is an object conforming to `<PCFAFURLRequestSerialization>`.
+
  Responses received from the server are automatically validated and serialized by the `responseSerializers` property, which is an object conforming to `<PCFAFURLResponseSerialization>`
 
  ## URL Construction Using Relative Paths
@@ -75,12 +83,12 @@
 
  Network reachability status and change monitoring is available through the `reachabilityManager` property. Applications may choose to monitor network reachability conditions in order to prevent or suspend any outbound requests. See `PCFAFNetworkReachabilityManager` for more details.
 
- ## NSecureCoding & NSCopying Caveats
+ ## NSSecureCoding & NSCopying Caveats
 
- `PCFAFHTTPRequestOperationManager` conforms to the `NSecureCoding` and `NSCopying` protocols, allowing operations to be archived to disk, and copied in memory, respectively. There are a few minor caveats to keep in mind, however:
+ `PCFAFHTTPRequestOperationManager` conforms to the `NSSecureCoding` and `NSCopying` protocols, allowing operations to be archived to disk, and copied in memory, respectively. There are a few minor caveats to keep in mind, however:
 
  - Archives and copies of HTTP clients will be initialized with an empty operation queue.
- - NSecureCoding cannot serialize / deserialize block properties, so an archive of an HTTP client will not include any reachability callback block that may be set.
+ - NSSecureCoding cannot serialize / deserialize block properties, so an archive of an HTTP client will not include any reachability callback block that may be set.
  */
 @interface PCFAFHTTPRequestOperationManager : NSObject <NSSecureCoding, NSCopying>
 
@@ -91,7 +99,7 @@
 
 /**
  Requests created with `requestWithMethod:URLString:parameters:` & `multipartFormRequestWithMethod:URLString:parameters:constructingBodyWithBlock:` are constructed with a set of default headers using a parameter serialization specified by this property. By default, this is set to an instance of `PCFAFHTTPRequestSerializer`, which serializes query string parameters for `GET`, `HEAD`, and `DELETE` requests, or otherwise URL-form-encodes HTTP message bodies.
- 
+
  @warning `requestSerializer` must not be `nil`.
  */
 @property (nonatomic, strong) PCFAFHTTPRequestSerializer <PCFAFURLRequestSerialization> * requestSerializer;
@@ -144,6 +152,28 @@
  */
 @property (readwrite, nonatomic, strong) PCFAFNetworkReachabilityManager *reachabilityManager;
 
+///-------------------------------
+/// @name Managing Callback Queues
+///-------------------------------
+
+/**
+ The dispatch queue for the `completionBlock` of request operations. If `NULL` (default), the main queue is used.
+ */
+#if OS_OBJECT_HAVE_OBJC_SUPPORT
+@property (nonatomic, strong) dispatch_queue_t completionQueue;
+#else
+@property (nonatomic, assign) dispatch_queue_t completionQueue;
+#endif
+
+/**
+ The dispatch group for the `completionBlock` of request operations. If `NULL` (default), a private dispatch group is used.
+ */
+#if OS_OBJECT_HAVE_OBJC_SUPPORT
+@property (nonatomic, strong) dispatch_group_t completionGroup;
+#else
+@property (nonatomic, assign) dispatch_group_t completionGroup;
+#endif
+
 ///---------------------------------------------
 /// @name Creating and Initializing HTTP Clients
 ///---------------------------------------------
@@ -155,14 +185,14 @@
 
 /**
  Initializes an `PCFAFHTTPRequestOperationManager` object with the specified base URL.
- 
+
  This is the designated initializer.
- 
+
  @param url The base URL for the HTTP client.
 
  @return The newly-initialized HTTP client
  */
-- (instancetype)initWithBaseURL:(NSURL *)url;
+- (instancetype)initWithBaseURL:(NSURL *)url NS_DESIGNATED_INITIALIZER;
 
 ///---------------------------------------
 /// @name Managing HTTP Request Operations
@@ -228,22 +258,22 @@
                          success:(void (^)(PCFAFHTTPRequestOperation *operation, id responseObject))success
                          failure:(void (^)(PCFAFHTTPRequestOperation *operation, NSError *error))failure;
 
-///**
-// Creates and runs an `PCFAFHTTPRequestOperation` with a multipart `POST` request.
-//
-// @param URLString The URL string used to create the request URL.
-// @param parameters The parameters to be encoded according to the client request serializer.
-// @param block A block that takes a single argument and appends data to the HTTP body. The block argument is an object adopting the `PCFAFMultipartFormData` protocol.
-// @param success A block object to be executed when the request operation finishes successfully. This block has no return value and takes two arguments: the request operation, and the response object created by the client response serializer.
-// @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the request operation and the error describing the network or parsing error that occurred.
-//
-// @see -HTTPRequestOperationWithRequest:success:failure:
-// */
-//- (PCFAFHTTPRequestOperation *)POST:(NSString *)URLString
-//                      parameters:(id)parameters
-//       constructingBodyWithBlock:(void (^)(id <PCFAFMultipartFormData> formData))block
-//                         success:(void (^)(PCFAFHTTPRequestOperation *operation, id responseObject))success
-//                         failure:(void (^)(PCFAFHTTPRequestOperation *operation, NSError *error))failure;
+/**
+ Creates and runs an `PCFAFHTTPRequestOperation` with a multipart `POST` request.
+
+ @param URLString The URL string used to create the request URL.
+ @param parameters The parameters to be encoded according to the client request serializer.
+ @param block A block that takes a single argument and appends data to the HTTP body. The block argument is an object adopting the `PCFAFMultipartFormData` protocol.
+ @param success A block object to be executed when the request operation finishes successfully. This block has no return value and takes two arguments: the request operation, and the response object created by the client response serializer.
+ @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the request operation and the error describing the network or parsing error that occurred.
+
+ @see -HTTPRequestOperationWithRequest:success:failure:
+ */
+- (PCFAFHTTPRequestOperation *)POST:(NSString *)URLString
+                      parameters:(id)parameters
+       constructingBodyWithBlock:(void (^)(id <PCFAFMultipartFormData> formData))block
+                         success:(void (^)(PCFAFHTTPRequestOperation *operation, id responseObject))success
+                         failure:(void (^)(PCFAFHTTPRequestOperation *operation, NSError *error))failure;
 
 /**
  Creates and runs an `PCFAFHTTPRequestOperation` with a `PUT` request.

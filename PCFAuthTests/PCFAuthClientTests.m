@@ -89,7 +89,7 @@
     
     XCTAssertEqual(pcfAFOAuth2Manager, [PCFAuthClient manager]);
     
-    OCMVerify([pcfAFOAuth2Manager clientWithBaseURL:self.url clientID:clientId secret:clientSecret]);
+    OCMVerify([PCFAFOAuth2Manager clientWithBaseURL:self.url clientID:clientId secret:clientSecret]);
     
     [pcfAFOAuth2Manager stopMocking];
     [pcfAuthConfig stopMocking];

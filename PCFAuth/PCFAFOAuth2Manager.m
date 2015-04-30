@@ -85,6 +85,7 @@ static NSError * PCFAFErrorFromRFC6749Section5_2Error(id object) {
 @property (readwrite, nonatomic, copy) NSString *serviceProviderIdentifier;
 @property (readwrite, nonatomic, copy) NSString *clientID;
 @property (readwrite, nonatomic, copy) NSString *secret;
+@property (readonly, nonatomic)  BOOL basicAuth;
 @end
 
 @implementation PCFAFOAuth2Manager
@@ -106,19 +107,41 @@ static NSError * PCFAFErrorFromRFC6749Section5_2Error(id object) {
     if (!self) {
         return nil;
     }
-
+    
     self.serviceProviderIdentifier = [self.baseURL host];
     self.clientID = clientID;
     self.secret = secret;
 
-    [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//    self.useHTTPBasicAuthentication = YES;
 
+    [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
     return self;
 }
 
 #pragma mark -
 
-- (void)authenticateUsingOAuthWithURLString:(NSString *)URLString
+//- (void)setUseHTTPBasicAuthentication:(BOOL)useHTTPBasicAuthentication {
+//    _useHTTPBasicAuthentication = useHTTPBasicAuthentication;
+//
+//    if (self.useHTTPBasicAuthentication) {
+//        [self.requestSerializer setAuthorizationHeaderFieldWithUsername:self.clientID password:self.secret];
+//    } else {
+//        [self.requestSerializer setValue:nil forHTTPHeaderField:@"Authorization"];
+//    }
+//}
+
+- (void)setSecret:(NSString *)secret {
+    if (!secret) {
+        secret = @"";
+    }
+
+    _secret = secret;
+}
+
+#pragma mark -
+
+- (PCFAFHTTPRequestOperation *)authenticateUsingOAuthWithURLString:(NSString *)URLString
                                    username:(NSString *)username
                                    password:(NSString *)password
                                       scope:(NSString *)scope
@@ -136,10 +159,10 @@ static NSError * PCFAFErrorFromRFC6749Section5_2Error(id object) {
                                  @"scope": scope
                                 };
 
-    [self authenticateUsingOAuthWithURLString:URLString parameters:parameters success:success failure:failure];
+    return [self authenticateUsingOAuthWithURLString:URLString parameters:parameters success:success failure:failure];
 }
 
-- (void)authenticateUsingOAuthWithURLString:(NSString *)URLString
+- (PCFAFHTTPRequestOperation *)authenticateUsingOAuthWithURLString:(NSString *)URLString
                                       scope:(NSString *)scope
                                     success:(void (^)(PCFAFOAuthCredential *credential))success
                                     failure:(void (^)(NSError *error))failure
@@ -151,10 +174,10 @@ static NSError * PCFAFErrorFromRFC6749Section5_2Error(id object) {
                                  @"scope": scope
                                 };
 
-    [self authenticateUsingOAuthWithURLString:URLString parameters:parameters success:success failure:failure];
+    return [self authenticateUsingOAuthWithURLString:URLString parameters:parameters success:success failure:failure];
 }
 
-- (void)authenticateUsingOAuthWithURLString:(NSString *)URLString
+- (PCFAFHTTPRequestOperation *)authenticateUsingOAuthWithURLString:(NSString *)URLString
                                refreshToken:(NSString *)refreshToken
                                     success:(void (^)(PCFAFOAuthCredential *credential))success
                                     failure:(void (^)(NSError *error))failure
@@ -166,10 +189,10 @@ static NSError * PCFAFErrorFromRFC6749Section5_2Error(id object) {
                                  @"refresh_token": refreshToken
                                 };
 
-    [self authenticateUsingOAuthWithURLString:URLString parameters:parameters success:success failure:failure];
+    return [self authenticateUsingOAuthWithURLString:URLString parameters:parameters success:success failure:failure];
 }
 
-- (void)authenticateUsingOAuthWithURLString:(NSString *)URLString
+- (PCFAFHTTPRequestOperation *)authenticateUsingOAuthWithURLString:(NSString *)URLString
                                        code:(NSString *)code
                                 redirectURI:(NSString *)uri
                                     success:(void (^)(PCFAFOAuthCredential *credential))success
@@ -184,10 +207,10 @@ static NSError * PCFAFErrorFromRFC6749Section5_2Error(id object) {
                                  @"redirect_uri": uri
                                 };
 
-    [self authenticateUsingOAuthWithURLString:URLString parameters:parameters success:success failure:failure];
+    return [self authenticateUsingOAuthWithURLString:URLString parameters:parameters success:success failure:failure];
 }
 
-- (void)authenticateUsingOAuthWithURLString:(NSString *)URLString
+- (PCFAFHTTPRequestOperation *)authenticateUsingOAuthWithURLString:(NSString *)URLString
                                  parameters:(NSDictionary *)parameters
                                     success:(void (^)(PCFAFOAuthCredential *credential))success
                                     failure:(void (^)(NSError *error))failure
@@ -197,7 +220,7 @@ static NSError * PCFAFErrorFromRFC6749Section5_2Error(id object) {
     mutableParameters[@"client_secret"] = self.secret;
     parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
 
-    [self POST:URLString parameters:parameters success:^(__unused PCFAFHTTPRequestOperation *operation, id responseObject) {
+    PCFAFHTTPRequestOperation *requestOperation = [self POST:URLString parameters:parameters success:^(__unused PCFAFHTTPRequestOperation *operation, id responseObject) {
         if (!responseObject) {
             if (failure) {
                 failure(nil);
@@ -221,21 +244,27 @@ static NSError * PCFAFErrorFromRFC6749Section5_2Error(id object) {
 
         PCFAFOAuthCredential *credential = [PCFAFOAuthCredential credentialWithOAuthToken:[responseObject valueForKey:@"access_token"] tokenType:[responseObject valueForKey:@"token_type"]];
 
+
+        if (refreshToken) { // refreshToken is optional in the OAuth2 spec
+            [credential setRefreshToken:refreshToken];
+        }
+
+        // Expiration is optional, but recommended in the OAuth2 spec. It not provide, assume distantFuture === never expires
         NSDate *expireDate = [NSDate distantFuture];
         id expiresIn = [responseObject valueForKey:@"expires_in"];
         if (expiresIn && ![expiresIn isEqual:[NSNull null]]) {
             expireDate = [NSDate dateWithTimeIntervalSinceNow:[expiresIn doubleValue]];
         }
 
-        if (refreshToken && expireDate) {
-            [credential setRefreshToken:refreshToken expiration:expireDate];
+        if (expireDate) {
+            [credential setExpiration:expireDate];
         }
 
         if (success) {
             success(credential);
         }
     } failure:^(__unused PCFAFHTTPRequestOperation *operation, NSError *error) {
-        if (failure) {;
+        if (failure) {
             // __BEGIN_EDIT__: Use the actual HTTP status for error code
             NSHTTPURLResponse *response = (NSHTTPURLResponse *) operation.response;
             error = [[NSError alloc] initWithDomain:error.domain code:response.statusCode userInfo:error.userInfo];
@@ -243,6 +272,8 @@ static NSError * PCFAFErrorFromRFC6749Section5_2Error(id object) {
             failure(error);
         }
     }];
+    
+    return requestOperation;
 }
 
 @end
@@ -286,8 +317,19 @@ static NSError * PCFAFErrorFromRFC6749Section5_2Error(id object) {
 }
 
 - (void)setRefreshToken:(NSString *)refreshToken
+{
+    _refreshToken = refreshToken;
+}
+
+- (void)setExpiration:(NSDate *)expiration
+{
+    _expiration = expiration;
+}
+
+- (void)setRefreshToken:(NSString *)refreshToken
              expiration:(NSDate *)expiration
 {
+    NSParameterAssert(refreshToken);
     NSParameterAssert(expiration);
 
     self.refreshToken = refreshToken;

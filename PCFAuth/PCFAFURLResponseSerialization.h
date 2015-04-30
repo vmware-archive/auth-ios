@@ -1,6 +1,6 @@
-// PCFAFSerialization.h
+// PCFAFURLResponseSerialization.h
 //
-// Copyright (c) 2013-2014 PCFAFNetworking (http://afnetworking.com)
+// Copyright (c) 2013-2015 PCFAFNetworking (http://afnetworking.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -8,10 +8,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -54,8 +54,10 @@
  */
 @interface PCFAFHTTPResponseSerializer : NSObject <PCFAFURLResponseSerialization>
 
+- (instancetype) init;
+
 /**
- The string encoding used to serialize parameters.
+ The string encoding used to serialize data received from the server, when no string encoding is specified by the response. `NSUTF8StringEncoding` by default.
  */
 @property (nonatomic, assign) NSStringEncoding stringEncoding;
 
@@ -111,6 +113,8 @@
  */
 @interface PCFAFJSONResponseSerializer : PCFAFHTTPResponseSerializer
 
+- (instancetype) init;
+
 /**
  Options for reading the response JSON data and creating the Foundation objects. For possible values, see the `NSJSONSerialization` documentation section "NSJSONReadingOptions". `0` by default.
  */
@@ -133,9 +137,9 @@
 #pragma mark -
 
 /**
- `PCFAFXMLParserSerializer` is a subclass of `PCFAFHTTPResponseSerializer` that validates and decodes XML responses as an `NSXMLParser` objects.
+ `PCFAFXMLParserResponseSerializer` is a subclass of `PCFAFHTTPResponseSerializer` that validates and decodes XML responses as an `NSXMLParser` objects.
 
- By default, `PCFAFXMLParserSerializer` accepts the following MIME types, which includes the official standard, `application/xml`, as well as other commonly-used types:
+ By default, `PCFAFXMLParserResponseSerializer` accepts the following MIME types, which includes the official standard, `application/xml`, as well as other commonly-used types:
 
  - `application/xml`
  - `text/xml`
@@ -149,14 +153,16 @@
 #ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
 
 /**
- `PCFAFXMLDocumentSerializer` is a subclass of `PCFAFHTTPResponseSerializer` that validates and decodes XML responses as an `NSXMLDocument` objects.
+ `PCFAFXMLDocumentResponseSerializer` is a subclass of `PCFAFHTTPResponseSerializer` that validates and decodes XML responses as an `NSXMLDocument` objects.
 
- By default, `PCFAFXMLDocumentSerializer` accepts the following MIME types, which includes the official standard, `application/xml`, as well as other commonly-used types:
+ By default, `PCFAFXMLDocumentResponseSerializer` accepts the following MIME types, which includes the official standard, `application/xml`, as well as other commonly-used types:
 
  - `application/xml`
  - `text/xml`
  */
 @interface PCFAFXMLDocumentResponseSerializer : PCFAFHTTPResponseSerializer
+
+- (instancetype) init;
 
 /**
  Input and output options specifically intended for `NSXMLDocument` objects. For possible values, see the `NSJSONSerialization` documentation section "NSJSONReadingOptions". `0` by default.
@@ -177,13 +183,15 @@
 #pragma mark -
 
 /**
- `PCFAFPropertyListSerializer` is a subclass of `PCFAFHTTPResponseSerializer` that validates and decodes XML responses as an `NSXMLDocument` objects.
+ `PCFAFPropertyListResponseSerializer` is a subclass of `PCFAFHTTPResponseSerializer` that validates and decodes XML responses as an `NSXMLDocument` objects.
 
- By default, `PCFAFPropertyListSerializer` accepts the following MIME types:
+ By default, `PCFAFPropertyListResponseSerializer` accepts the following MIME types:
 
  - `application/x-plist`
  */
 @interface PCFAFPropertyListResponseSerializer : PCFAFHTTPResponseSerializer
+
+- (instancetype) init;
 
 /**
  The property list format. Possible values are described in "NSPropertyListFormat".
@@ -209,9 +217,9 @@
 #pragma mark -
 
 /**
- `PCFAFImageSerializer` is a subclass of `PCFAFHTTPResponseSerializer` that validates and decodes image responses.
+ `PCFAFImageResponseSerializer` is a subclass of `PCFAFHTTPResponseSerializer` that validates and decodes image responses.
 
- By default, `PCFAFImageSerializer` accepts the following MIME types, which correspond to the image formats supported by UIImage or NSImage:
+ By default, `PCFAFImageResponseSerializer` accepts the following MIME types, which correspond to the image formats supported by UIImage or NSImage:
 
  - `image/tiff`
  - `image/jpeg`
@@ -260,3 +268,43 @@
 + (instancetype)compoundSerializerWithResponseSerializers:(NSArray *)responseSerializers;
 
 @end
+
+///----------------
+/// @name Constants
+///----------------
+
+/**
+ ## Error Domains
+
+ The following error domain is predefined.
+
+ - `NSString * const PCFAFURLResponseSerializationErrorDomain`
+
+ ### Constants
+
+ `PCFAFURLResponseSerializationErrorDomain`
+ PCFAFURLResponseSerializer errors. Error codes for `PCFAFURLResponseSerializationErrorDomain` correspond to codes in `NSURLErrorDomain`.
+ */
+extern NSString * const PCFAFURLResponseSerializationErrorDomain;
+
+/**
+ ## User info dictionary keys
+
+ These keys may exist in the user info dictionary, in addition to those defined for NSError.
+
+ - `NSString * const PCFAFNetworkingOperationFailingURLResponseErrorKey`
+ - `NSString * const PCFAFNetworkingOperationFailingURLResponseDataErrorKey`
+
+ ### Constants
+
+ `PCFAFNetworkingOperationFailingURLResponseErrorKey`
+ The corresponding value is an `NSURLResponse` containing the response of the operation associated with an error. This key is only present in the `PCFAFURLResponseSerializationErrorDomain`.
+
+ `PCFAFNetworkingOperationFailingURLResponseDataErrorKey`
+ The corresponding value is an `NSData` containing the original data of the operation associated with an error. This key is only present in the `PCFAFURLResponseSerializationErrorDomain`.
+ */
+extern NSString * const PCFAFNetworkingOperationFailingURLResponseErrorKey;
+
+extern NSString * const PCFAFNetworkingOperationFailingURLResponseDataErrorKey;
+
+

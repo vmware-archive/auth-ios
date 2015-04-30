@@ -24,35 +24,35 @@
 		E16DA16B1A89535500E37FDD /* PCFAuthHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = E16DA1691A89535500E37FDD /* PCFAuthHandler.h */; };
 		E16DA16C1A89535500E37FDD /* PCFAuthHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E16DA16A1A89535500E37FDD /* PCFAuthHandler.m */; };
 		E16DA16E1A8955EC00E37FDD /* PCFAuthHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E16DA16D1A8955EC00E37FDD /* PCFAuthHandlerTests.m */; };
+		E18AECA31AF1830200F99716 /* PCFAFHTTPRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = E18AEC901AF1830200F99716 /* PCFAFHTTPRequestOperation.h */; };
+		E18AECA41AF1830200F99716 /* PCFAFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AEC911AF1830200F99716 /* PCFAFHTTPRequestOperation.m */; };
+		E18AECA51AF1830200F99716 /* PCFAFHTTPRequestOperationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E18AEC921AF1830200F99716 /* PCFAFHTTPRequestOperationManager.h */; };
+		E18AECA61AF1830200F99716 /* PCFAFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AEC931AF1830200F99716 /* PCFAFHTTPRequestOperationManager.m */; };
+		E18AECA71AF1830200F99716 /* PCFAFHTTPSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E18AEC941AF1830200F99716 /* PCFAFHTTPSessionManager.h */; };
+		E18AECA81AF1830200F99716 /* PCFAFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AEC951AF1830200F99716 /* PCFAFHTTPSessionManager.m */; };
+		E18AECA91AF1830200F99716 /* PCFAFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = E18AEC961AF1830200F99716 /* PCFAFNetworking.h */; };
+		E18AECAA1AF1830200F99716 /* PCFAFNetworkReachabilityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E18AEC971AF1830200F99716 /* PCFAFNetworkReachabilityManager.h */; };
+		E18AECAB1AF1830200F99716 /* PCFAFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AEC981AF1830200F99716 /* PCFAFNetworkReachabilityManager.m */; };
+		E18AECAC1AF1830200F99716 /* PCFAFSecurityPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = E18AEC991AF1830200F99716 /* PCFAFSecurityPolicy.h */; };
+		E18AECAD1AF1830200F99716 /* PCFAFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AEC9A1AF1830200F99716 /* PCFAFSecurityPolicy.m */; };
+		E18AECAE1AF1830200F99716 /* PCFAFURLConnectionOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = E18AEC9B1AF1830200F99716 /* PCFAFURLConnectionOperation.h */; };
+		E18AECAF1AF1830200F99716 /* PCFAFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AEC9C1AF1830200F99716 /* PCFAFURLConnectionOperation.m */; };
+		E18AECB01AF1830200F99716 /* PCFAFURLRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = E18AEC9D1AF1830200F99716 /* PCFAFURLRequestSerialization.h */; };
+		E18AECB11AF1830200F99716 /* PCFAFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AEC9E1AF1830200F99716 /* PCFAFURLRequestSerialization.m */; };
+		E18AECB21AF1830200F99716 /* PCFAFURLResponseSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = E18AEC9F1AF1830200F99716 /* PCFAFURLResponseSerialization.h */; };
+		E18AECB31AF1830200F99716 /* PCFAFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AECA01AF1830200F99716 /* PCFAFURLResponseSerialization.m */; };
+		E18AECB41AF1830200F99716 /* PCFAFURLSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E18AECA11AF1830200F99716 /* PCFAFURLSessionManager.h */; };
+		E18AECB51AF1830200F99716 /* PCFAFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AECA21AF1830200F99716 /* PCFAFURLSessionManager.m */; };
+		E18AECBA1AF1832800F99716 /* PCFAFHTTPRequestSerializer+OAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = E18AECB61AF1832800F99716 /* PCFAFHTTPRequestSerializer+OAuth2.h */; };
+		E18AECBB1AF1832800F99716 /* PCFAFHTTPRequestSerializer+OAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AECB71AF1832800F99716 /* PCFAFHTTPRequestSerializer+OAuth2.m */; };
+		E18AECBC1AF1832800F99716 /* PCFAFOAuth2Manager.h in Headers */ = {isa = PBXBuildFile; fileRef = E18AECB81AF1832800F99716 /* PCFAFOAuth2Manager.h */; };
+		E18AECBD1AF1832800F99716 /* PCFAFOAuth2Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = E18AECB91AF1832800F99716 /* PCFAFOAuth2Manager.m */; };
 		E19779121A8A9E9000A528B6 /* PCFAuthClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E19779111A8A9E9000A528B6 /* PCFAuthClientTests.m */; };
 		E19779141A8BDDB900A528B6 /* PCFAuthResponseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E19779131A8BDDB900A528B6 /* PCFAuthResponseTests.m */; };
 		E19779161A8BDEB400A528B6 /* PCFTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E19779151A8BDEB400A528B6 /* PCFTokenTests.m */; };
 		E19CF69B1A8BF3C000876495 /* PCFAuthCodeHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E19CF69A1A8BF3C000876495 /* PCFAuthCodeHandlerTests.m */; };
 		E19CF69D1A8C039600876495 /* PCFAuthConfigTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E19CF69C1A8C039600876495 /* PCFAuthConfigTests.m */; };
 		E19CF69F1A8C058D00876495 /* PCFLoginViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E19CF69E1A8C058D00876495 /* PCFLoginViewControllerTests.m */; };
-		E1A830D41A44910900CF3BF9 /* PCFAFHTTPRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830C11A44910900CF3BF9 /* PCFAFHTTPRequestOperation.h */; };
-		E1A830D51A44910900CF3BF9 /* PCFAFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830C21A44910900CF3BF9 /* PCFAFHTTPRequestOperation.m */; };
-		E1A830D61A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830C31A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.h */; };
-		E1A830D71A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830C41A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.m */; };
-		E1A830D81A44910900CF3BF9 /* PCFAFHTTPSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830C51A44910900CF3BF9 /* PCFAFHTTPSessionManager.h */; };
-		E1A830D91A44910900CF3BF9 /* PCFAFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830C61A44910900CF3BF9 /* PCFAFHTTPSessionManager.m */; };
-		E1A830DA1A44910900CF3BF9 /* PCFAFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830C71A44910900CF3BF9 /* PCFAFNetworking.h */; };
-		E1A830DB1A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830C81A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.h */; };
-		E1A830DC1A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830C91A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.m */; };
-		E1A830DD1A44910900CF3BF9 /* PCFAFSecurityPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830CA1A44910900CF3BF9 /* PCFAFSecurityPolicy.h */; };
-		E1A830DE1A44910900CF3BF9 /* PCFAFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830CB1A44910900CF3BF9 /* PCFAFSecurityPolicy.m */; };
-		E1A830DF1A44910900CF3BF9 /* PCFAFURLConnectionOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830CC1A44910900CF3BF9 /* PCFAFURLConnectionOperation.h */; };
-		E1A830E01A44910900CF3BF9 /* PCFAFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830CD1A44910900CF3BF9 /* PCFAFURLConnectionOperation.m */; };
-		E1A830E11A44910900CF3BF9 /* PCFAFURLRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830CE1A44910900CF3BF9 /* PCFAFURLRequestSerialization.h */; };
-		E1A830E21A44910900CF3BF9 /* PCFAFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830CF1A44910900CF3BF9 /* PCFAFURLRequestSerialization.m */; };
-		E1A830E31A44910900CF3BF9 /* PCFAFURLResponseSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830D01A44910900CF3BF9 /* PCFAFURLResponseSerialization.h */; };
-		E1A830E41A44910900CF3BF9 /* PCFAFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830D11A44910900CF3BF9 /* PCFAFURLResponseSerialization.m */; };
-		E1A830E51A44910900CF3BF9 /* PCFAFURLSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830D21A44910900CF3BF9 /* PCFAFURLSessionManager.h */; };
-		E1A830E61A44910900CF3BF9 /* PCFAFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830D31A44910900CF3BF9 /* PCFAFURLSessionManager.m */; };
-		E1A830ED1A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830E91A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.h */; };
-		E1A830EE1A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830EA1A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.m */; };
-		E1A830EF1A4491B000CF3BF9 /* PCFAFOAuth2Manager.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A830EB1A4491B000CF3BF9 /* PCFAFOAuth2Manager.h */; };
-		E1A830F01A4491B000CF3BF9 /* PCFAFOAuth2Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A830EC1A4491B000CF3BF9 /* PCFAFOAuth2Manager.m */; };
 		E1A831071A44C4B000CF3BF9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A831061A44C4B000CF3BF9 /* main.m */; };
 		E1A8310A1A44C4B000CF3BF9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A831091A44C4B000CF3BF9 /* AppDelegate.m */; };
 		E1A8310D1A44C4B000CF3BF9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A8310C1A44C4B000CF3BF9 /* ViewController.m */; };
@@ -137,35 +137,35 @@
 		E16DA1691A89535500E37FDD /* PCFAuthHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAuthHandler.h; sourceTree = "<group>"; };
 		E16DA16A1A89535500E37FDD /* PCFAuthHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAuthHandler.m; sourceTree = "<group>"; };
 		E16DA16D1A8955EC00E37FDD /* PCFAuthHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAuthHandlerTests.m; sourceTree = "<group>"; };
+		E18AEC901AF1830200F99716 /* PCFAFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		E18AEC911AF1830200F99716 /* PCFAFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		E18AEC921AF1830200F99716 /* PCFAFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
+		E18AEC931AF1830200F99716 /* PCFAFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
+		E18AEC941AF1830200F99716 /* PCFAFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFHTTPSessionManager.h; sourceTree = "<group>"; };
+		E18AEC951AF1830200F99716 /* PCFAFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFHTTPSessionManager.m; sourceTree = "<group>"; };
+		E18AEC961AF1830200F99716 /* PCFAFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFNetworking.h; sourceTree = "<group>"; };
+		E18AEC971AF1830200F99716 /* PCFAFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		E18AEC981AF1830200F99716 /* PCFAFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		E18AEC991AF1830200F99716 /* PCFAFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFSecurityPolicy.h; sourceTree = "<group>"; };
+		E18AEC9A1AF1830200F99716 /* PCFAFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFSecurityPolicy.m; sourceTree = "<group>"; };
+		E18AEC9B1AF1830200F99716 /* PCFAFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFURLConnectionOperation.h; sourceTree = "<group>"; };
+		E18AEC9C1AF1830200F99716 /* PCFAFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFURLConnectionOperation.m; sourceTree = "<group>"; };
+		E18AEC9D1AF1830200F99716 /* PCFAFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFURLRequestSerialization.h; sourceTree = "<group>"; };
+		E18AEC9E1AF1830200F99716 /* PCFAFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFURLRequestSerialization.m; sourceTree = "<group>"; };
+		E18AEC9F1AF1830200F99716 /* PCFAFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFURLResponseSerialization.h; sourceTree = "<group>"; };
+		E18AECA01AF1830200F99716 /* PCFAFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFURLResponseSerialization.m; sourceTree = "<group>"; };
+		E18AECA11AF1830200F99716 /* PCFAFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFURLSessionManager.h; sourceTree = "<group>"; };
+		E18AECA21AF1830200F99716 /* PCFAFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFURLSessionManager.m; sourceTree = "<group>"; };
+		E18AECB61AF1832800F99716 /* PCFAFHTTPRequestSerializer+OAuth2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PCFAFHTTPRequestSerializer+OAuth2.h"; sourceTree = "<group>"; };
+		E18AECB71AF1832800F99716 /* PCFAFHTTPRequestSerializer+OAuth2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PCFAFHTTPRequestSerializer+OAuth2.m"; sourceTree = "<group>"; };
+		E18AECB81AF1832800F99716 /* PCFAFOAuth2Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFOAuth2Manager.h; sourceTree = "<group>"; };
+		E18AECB91AF1832800F99716 /* PCFAFOAuth2Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFOAuth2Manager.m; sourceTree = "<group>"; };
 		E19779111A8A9E9000A528B6 /* PCFAuthClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAuthClientTests.m; sourceTree = "<group>"; };
 		E19779131A8BDDB900A528B6 /* PCFAuthResponseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAuthResponseTests.m; sourceTree = "<group>"; };
 		E19779151A8BDEB400A528B6 /* PCFTokenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFTokenTests.m; sourceTree = "<group>"; };
 		E19CF69A1A8BF3C000876495 /* PCFAuthCodeHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAuthCodeHandlerTests.m; sourceTree = "<group>"; };
 		E19CF69C1A8C039600876495 /* PCFAuthConfigTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAuthConfigTests.m; sourceTree = "<group>"; };
 		E19CF69E1A8C058D00876495 /* PCFLoginViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFLoginViewControllerTests.m; sourceTree = "<group>"; };
-		E1A830C11A44910900CF3BF9 /* PCFAFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFHTTPRequestOperation.h; sourceTree = "<group>"; };
-		E1A830C21A44910900CF3BF9 /* PCFAFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFHTTPRequestOperation.m; sourceTree = "<group>"; };
-		E1A830C31A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
-		E1A830C41A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
-		E1A830C51A44910900CF3BF9 /* PCFAFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFHTTPSessionManager.h; sourceTree = "<group>"; };
-		E1A830C61A44910900CF3BF9 /* PCFAFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFHTTPSessionManager.m; sourceTree = "<group>"; };
-		E1A830C71A44910900CF3BF9 /* PCFAFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFNetworking.h; sourceTree = "<group>"; };
-		E1A830C81A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFNetworkReachabilityManager.h; sourceTree = "<group>"; };
-		E1A830C91A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFNetworkReachabilityManager.m; sourceTree = "<group>"; };
-		E1A830CA1A44910900CF3BF9 /* PCFAFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFSecurityPolicy.h; sourceTree = "<group>"; };
-		E1A830CB1A44910900CF3BF9 /* PCFAFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFSecurityPolicy.m; sourceTree = "<group>"; };
-		E1A830CC1A44910900CF3BF9 /* PCFAFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFURLConnectionOperation.h; sourceTree = "<group>"; };
-		E1A830CD1A44910900CF3BF9 /* PCFAFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFURLConnectionOperation.m; sourceTree = "<group>"; };
-		E1A830CE1A44910900CF3BF9 /* PCFAFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFURLRequestSerialization.h; sourceTree = "<group>"; };
-		E1A830CF1A44910900CF3BF9 /* PCFAFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFURLRequestSerialization.m; sourceTree = "<group>"; };
-		E1A830D01A44910900CF3BF9 /* PCFAFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFURLResponseSerialization.h; sourceTree = "<group>"; };
-		E1A830D11A44910900CF3BF9 /* PCFAFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFURLResponseSerialization.m; sourceTree = "<group>"; };
-		E1A830D21A44910900CF3BF9 /* PCFAFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFURLSessionManager.h; sourceTree = "<group>"; };
-		E1A830D31A44910900CF3BF9 /* PCFAFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFURLSessionManager.m; sourceTree = "<group>"; };
-		E1A830E91A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PCFAFHTTPRequestSerializer+OAuth2.h"; sourceTree = "<group>"; };
-		E1A830EA1A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PCFAFHTTPRequestSerializer+OAuth2.m"; sourceTree = "<group>"; };
-		E1A830EB1A4491B000CF3BF9 /* PCFAFOAuth2Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFOAuth2Manager.h; sourceTree = "<group>"; };
-		E1A830EC1A4491B000CF3BF9 /* PCFAFOAuth2Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFOAuth2Manager.m; sourceTree = "<group>"; };
 		E1A831021A44C4B000CF3BF9 /* PCFAuthSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PCFAuthSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1A831051A44C4B000CF3BF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1A831061A44C4B000CF3BF9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -245,10 +245,10 @@
 		E1A830E71A44911100CF3BF9 /* AFOAuth2Manager */ = {
 			isa = PBXGroup;
 			children = (
-				E1A830E91A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.h */,
-				E1A830EA1A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.m */,
-				E1A830EB1A4491B000CF3BF9 /* PCFAFOAuth2Manager.h */,
-				E1A830EC1A4491B000CF3BF9 /* PCFAFOAuth2Manager.m */,
+				E18AECB61AF1832800F99716 /* PCFAFHTTPRequestSerializer+OAuth2.h */,
+				E18AECB71AF1832800F99716 /* PCFAFHTTPRequestSerializer+OAuth2.m */,
+				E18AECB81AF1832800F99716 /* PCFAFOAuth2Manager.h */,
+				E18AECB91AF1832800F99716 /* PCFAFOAuth2Manager.m */,
 			);
 			name = AFOAuth2Manager;
 			sourceTree = "<group>";
@@ -256,25 +256,25 @@
 		E1A830E81A44912700CF3BF9 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
-				E1A830C11A44910900CF3BF9 /* PCFAFHTTPRequestOperation.h */,
-				E1A830C21A44910900CF3BF9 /* PCFAFHTTPRequestOperation.m */,
-				E1A830C31A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.h */,
-				E1A830C41A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.m */,
-				E1A830C51A44910900CF3BF9 /* PCFAFHTTPSessionManager.h */,
-				E1A830C61A44910900CF3BF9 /* PCFAFHTTPSessionManager.m */,
-				E1A830C71A44910900CF3BF9 /* PCFAFNetworking.h */,
-				E1A830C81A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.h */,
-				E1A830C91A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.m */,
-				E1A830CA1A44910900CF3BF9 /* PCFAFSecurityPolicy.h */,
-				E1A830CB1A44910900CF3BF9 /* PCFAFSecurityPolicy.m */,
-				E1A830CC1A44910900CF3BF9 /* PCFAFURLConnectionOperation.h */,
-				E1A830CD1A44910900CF3BF9 /* PCFAFURLConnectionOperation.m */,
-				E1A830CE1A44910900CF3BF9 /* PCFAFURLRequestSerialization.h */,
-				E1A830CF1A44910900CF3BF9 /* PCFAFURLRequestSerialization.m */,
-				E1A830D01A44910900CF3BF9 /* PCFAFURLResponseSerialization.h */,
-				E1A830D11A44910900CF3BF9 /* PCFAFURLResponseSerialization.m */,
-				E1A830D21A44910900CF3BF9 /* PCFAFURLSessionManager.h */,
-				E1A830D31A44910900CF3BF9 /* PCFAFURLSessionManager.m */,
+				E18AEC901AF1830200F99716 /* PCFAFHTTPRequestOperation.h */,
+				E18AEC911AF1830200F99716 /* PCFAFHTTPRequestOperation.m */,
+				E18AEC921AF1830200F99716 /* PCFAFHTTPRequestOperationManager.h */,
+				E18AEC931AF1830200F99716 /* PCFAFHTTPRequestOperationManager.m */,
+				E18AEC941AF1830200F99716 /* PCFAFHTTPSessionManager.h */,
+				E18AEC951AF1830200F99716 /* PCFAFHTTPSessionManager.m */,
+				E18AEC961AF1830200F99716 /* PCFAFNetworking.h */,
+				E18AEC971AF1830200F99716 /* PCFAFNetworkReachabilityManager.h */,
+				E18AEC981AF1830200F99716 /* PCFAFNetworkReachabilityManager.m */,
+				E18AEC991AF1830200F99716 /* PCFAFSecurityPolicy.h */,
+				E18AEC9A1AF1830200F99716 /* PCFAFSecurityPolicy.m */,
+				E18AEC9B1AF1830200F99716 /* PCFAFURLConnectionOperation.h */,
+				E18AEC9C1AF1830200F99716 /* PCFAFURLConnectionOperation.m */,
+				E18AEC9D1AF1830200F99716 /* PCFAFURLRequestSerialization.h */,
+				E18AEC9E1AF1830200F99716 /* PCFAFURLRequestSerialization.m */,
+				E18AEC9F1AF1830200F99716 /* PCFAFURLResponseSerialization.h */,
+				E18AECA01AF1830200F99716 /* PCFAFURLResponseSerialization.m */,
+				E18AECA11AF1830200F99716 /* PCFAFURLSessionManager.h */,
+				E18AECA21AF1830200F99716 /* PCFAFURLSessionManager.m */,
 			);
 			name = AFNetworking;
 			sourceTree = "<group>";
@@ -399,28 +399,28 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E18AECB41AF1830200F99716 /* PCFAFURLSessionManager.h in Headers */,
+				E18AECB01AF1830200F99716 /* PCFAFURLRequestSerialization.h in Headers */,
 				E1DA433A1A83CD0900AD63F2 /* PCFAuthClient.h in Headers */,
+				E18AECAE1AF1830200F99716 /* PCFAFURLConnectionOperation.h in Headers */,
 				E1BF42F61A422E8D00B4707D /* PCFAuth.h in Headers */,
+				E18AECA31AF1830200F99716 /* PCFAFHTTPRequestOperation.h in Headers */,
 				E1DA43321A83C2AB00AD63F2 /* PCFAuthResponse.h in Headers */,
-				E1A830E11A44910900CF3BF9 /* PCFAFURLRequestSerialization.h in Headers */,
 				E1DA433E1A83CF8700AD63F2 /* PCFAuthUtil.h in Headers */,
+				E18AECA51AF1830200F99716 /* PCFAFHTTPRequestOperationManager.h in Headers */,
 				E1A8312C1A48A0E500CF3BF9 /* PCFLoginViewController.h in Headers */,
+				E18AECBC1AF1832800F99716 /* PCFAFOAuth2Manager.h in Headers */,
+				E18AECAC1AF1830200F99716 /* PCFAFSecurityPolicy.h in Headers */,
+				E18AECA91AF1830200F99716 /* PCFAFNetworking.h in Headers */,
 				E1DA434E1A8407B500AD63F2 /* PCFAuthCodeHandler.h in Headers */,
 				E16DA16B1A89535500E37FDD /* PCFAuthHandler.h in Headers */,
-				E1A830DD1A44910900CF3BF9 /* PCFAFSecurityPolicy.h in Headers */,
-				E1A830DA1A44910900CF3BF9 /* PCFAFNetworking.h in Headers */,
-				E1A830DB1A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.h in Headers */,
-				E1A830ED1A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.h in Headers */,
+				E18AECA71AF1830200F99716 /* PCFAFHTTPSessionManager.h in Headers */,
+				E18AECB21AF1830200F99716 /* PCFAFURLResponseSerialization.h in Headers */,
 				E1A831491A645A8600CF3BF9 /* PCFAuthLogger.h in Headers */,
-				E1A830D81A44910900CF3BF9 /* PCFAFHTTPSessionManager.h in Headers */,
-				E1A830E51A44910900CF3BF9 /* PCFAFURLSessionManager.h in Headers */,
-				E1A830D61A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.h in Headers */,
-				E1A830EF1A4491B000CF3BF9 /* PCFAFOAuth2Manager.h in Headers */,
+				E18AECAA1AF1830200F99716 /* PCFAFNetworkReachabilityManager.h in Headers */,
 				E1A831401A49E71E00CF3BF9 /* PCFToken.h in Headers */,
-				E1A830E31A44910900CF3BF9 /* PCFAFURLResponseSerialization.h in Headers */,
-				E1A830D41A44910900CF3BF9 /* PCFAFHTTPRequestOperation.h in Headers */,
+				E18AECBA1AF1832800F99716 /* PCFAFHTTPRequestSerializer+OAuth2.h in Headers */,
 				E1A8313C1A48D47200CF3BF9 /* PCFAuthConfig.h in Headers */,
-				E1A830DF1A44910900CF3BF9 /* PCFAFURLConnectionOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,27 +609,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1A830D51A44910900CF3BF9 /* PCFAFHTTPRequestOperation.m in Sources */,
-				E1A830F01A4491B000CF3BF9 /* PCFAFOAuth2Manager.m in Sources */,
-				E1A830D71A44910900CF3BF9 /* PCFAFHTTPRequestOperationManager.m in Sources */,
+				E18AECAF1AF1830200F99716 /* PCFAFURLConnectionOperation.m in Sources */,
 				E16DA16C1A89535500E37FDD /* PCFAuthHandler.m in Sources */,
+				E18AECAD1AF1830200F99716 /* PCFAFSecurityPolicy.m in Sources */,
 				E1A8313D1A48D47200CF3BF9 /* PCFAuthConfig.m in Sources */,
-				E1A830EE1A4491B000CF3BF9 /* PCFAFHTTPRequestSerializer+OAuth2.m in Sources */,
-				E1A830DC1A44910900CF3BF9 /* PCFAFNetworkReachabilityManager.m in Sources */,
+				E18AECA61AF1830200F99716 /* PCFAFHTTPRequestOperationManager.m in Sources */,
 				E1DA433B1A83CD0900AD63F2 /* PCFAuthClient.m in Sources */,
+				E18AECBB1AF1832800F99716 /* PCFAFHTTPRequestSerializer+OAuth2.m in Sources */,
 				E1DA433F1A83CF8700AD63F2 /* PCFAuthUtil.m in Sources */,
-				E1A830E41A44910900CF3BF9 /* PCFAFURLResponseSerialization.m in Sources */,
 				E1A831411A49E71E00CF3BF9 /* PCFToken.m in Sources */,
-				E1A830E01A44910900CF3BF9 /* PCFAFURLConnectionOperation.m in Sources */,
 				E1A8312D1A48A0E500CF3BF9 /* PCFLoginViewController.m in Sources */,
-				E1A830DE1A44910900CF3BF9 /* PCFAFSecurityPolicy.m in Sources */,
-				E1A830D91A44910900CF3BF9 /* PCFAFHTTPSessionManager.m in Sources */,
-				E1A830E21A44910900CF3BF9 /* PCFAFURLRequestSerialization.m in Sources */,
-				E1A830E61A44910900CF3BF9 /* PCFAFURLSessionManager.m in Sources */,
 				E1BF42F71A422E8D00B4707D /* PCFAuth.m in Sources */,
+				E18AECB51AF1830200F99716 /* PCFAFURLSessionManager.m in Sources */,
+				E18AECB31AF1830200F99716 /* PCFAFURLResponseSerialization.m in Sources */,
 				E1A8314A1A645A8600CF3BF9 /* PCFAuthLogger.m in Sources */,
 				E1DA434F1A8407B500AD63F2 /* PCFAuthCodeHandler.m in Sources */,
+				E18AECB11AF1830200F99716 /* PCFAFURLRequestSerialization.m in Sources */,
+				E18AECBD1AF1832800F99716 /* PCFAFOAuth2Manager.m in Sources */,
+				E18AECAB1AF1830200F99716 /* PCFAFNetworkReachabilityManager.m in Sources */,
 				E1DA43331A83C2AB00AD63F2 /* PCFAuthResponse.m in Sources */,
+				E18AECA41AF1830200F99716 /* PCFAFHTTPRequestOperation.m in Sources */,
+				E18AECA81AF1830200F99716 /* PCFAFHTTPSessionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

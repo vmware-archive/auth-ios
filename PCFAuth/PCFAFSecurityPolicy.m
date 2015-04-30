@@ -1,6 +1,6 @@
-// PCFAFSecurity.m
+// PCFAFSecurityPolicy.m
 //
-// Copyright (c) 2013-2014 PCFAFNetworking (http://afnetworking.com)
+// Copyright (c) 2013-2015 PCFAFNetworking (http://afnetworking.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,22 +22,13 @@
 
 #import "PCFAFSecurityPolicy.h"
 
-// Equivalent of macro in <AssertMacros.h>, without causing compiler warning:
-// "'DebugAssert' is deprecated: first deprecated in OS X 10.8"
-#ifndef PCFAF_Require_noErr
-       #define PCFAF_Require_noErr(errorCode, exceptionLabel)                        \
-          do {                                                                    \
-              if (__builtin_expect(0 != (errorCode), 0)) {                        \
-                  goto exceptionLabel;                                            \
-              }                                                                   \
-          } while (0)
-#endif
+#import <AssertMacros.h>
 
 #if !defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
 static NSData * PCFAFSecKeyGetData(SecKeyRef key) {
     CFDataRef data = NULL;
 
-    PCFAF_Require_noErr(SecItemExport(key, kSecFormatUnknown, kSecItemPemArmour, NULL, &data), _out);
+    __Require_noErr_Quiet(SecItemExport(key, kSecFormatUnknown, kSecItemPemArmour, NULL, &data), _out);
 
     return (__bridge_transfer NSData *)data;
 
@@ -60,17 +51,22 @@ static BOOL PCFAFSecKeyIsEqualToKey(SecKeyRef key1, SecKeyRef key2) {
 
 static id PCFAFPublicKeyForCertificate(NSData *certificate) {
     id allowedPublicKey = nil;
-
-    SecCertificateRef allowedCertificate = SecCertificateCreateWithData(NULL, (__bridge CFDataRef)certificate);
-    SecCertificateRef allowedCertificates[] = {allowedCertificate};
-    CFArrayRef tempCertificates = CFArrayCreate(NULL, (const void **)allowedCertificates, 1, NULL);
-
-    SecPolicyRef policy = SecPolicyCreateBasicX509();
-    SecTrustRef allowedTrust;
-    PCFAF_Require_noErr(SecTrustCreateWithCertificates(tempCertificates, policy, &allowedTrust), _out);
-
+    SecCertificateRef allowedCertificate;
+    SecCertificateRef allowedCertificates[1];
+    CFArrayRef tempCertificates = nil;
+    SecPolicyRef policy = nil;
+    SecTrustRef allowedTrust = nil;
     SecTrustResultType result;
-    PCFAF_Require_noErr(SecTrustEvaluate(allowedTrust, &result), _out);
+
+    allowedCertificate = SecCertificateCreateWithData(NULL, (__bridge CFDataRef)certificate);
+    __Require_Quiet(allowedCertificate != NULL, _out);
+
+    allowedCertificates[0] = allowedCertificate;
+    tempCertificates = CFArrayCreate(NULL, (const void **)allowedCertificates, 1, NULL);
+
+    policy = SecPolicyCreateBasicX509();
+    __Require_noErr_Quiet(SecTrustCreateWithCertificates(tempCertificates, policy, &allowedTrust), _out);
+    __Require_noErr_Quiet(SecTrustEvaluate(allowedTrust, &result), _out);
 
     allowedPublicKey = (__bridge_transfer id)SecTrustCopyPublicKey(allowedTrust);
 
@@ -97,7 +93,7 @@ _out:
 static BOOL PCFAFServerTrustIsValid(SecTrustRef serverTrust) {
     BOOL isValid = NO;
     SecTrustResultType result;
-    PCFAF_Require_noErr(SecTrustEvaluate(serverTrust, &result), _out);
+    __Require_noErr_Quiet(SecTrustEvaluate(serverTrust, &result), _out);
 
     isValid = (result == kSecTrustResultUnspecified || result == kSecTrustResultProceed);
 
@@ -128,10 +124,10 @@ static NSArray * PCFAFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust)
         CFArrayRef certificates = CFArrayCreate(NULL, (const void **)someCertificates, 1, NULL);
 
         SecTrustRef trust;
-        PCFAF_Require_noErr(SecTrustCreateWithCertificates(certificates, policy, &trust), _out);
-        
+        __Require_noErr_Quiet(SecTrustCreateWithCertificates(certificates, policy, &trust), _out);
+
         SecTrustResultType result;
-        PCFAF_Require_noErr(SecTrustEvaluate(trust, &result), _out);
+        __Require_noErr_Quiet(SecTrustEvaluate(trust, &result), _out);
 
         [trustChain addObject:(__bridge_transfer id)SecTrustCopyPublicKey(trust)];
 
@@ -154,6 +150,7 @@ static NSArray * PCFAFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust)
 #pragma mark -
 
 @interface PCFAFSecurityPolicy()
+@property (readwrite, nonatomic, assign) PCFAFSSLPinningMode SSLPinningMode;
 @property (readwrite, nonatomic, strong) NSArray *pinnedPublicKeys;
 @end
 
@@ -188,7 +185,7 @@ static NSArray * PCFAFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust)
 + (instancetype)policyWithPinningMode:(PCFAFSSLPinningMode)pinningMode {
     PCFAFSecurityPolicy *securityPolicy = [[self alloc] init];
     securityPolicy.SSLPinningMode = pinningMode;
-    securityPolicy.validatesDomainName = YES;
+
     [securityPolicy setPinnedCertificates:[self defaultPinnedCertificates]];
 
     return securityPolicy;
@@ -201,11 +198,10 @@ static NSArray * PCFAFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust)
     }
 
     self.validatesCertificateChain = YES;
+    self.validatesDomainName = YES;
 
     return self;
 }
-
-#pragma mark -
 
 - (void)setPinnedCertificates:(NSArray *)pinnedCertificates {
     _pinnedCertificates = pinnedCertificates;
@@ -243,14 +239,21 @@ static NSArray * PCFAFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust)
 
     SecTrustSetPolicies(serverTrust, (__bridge CFArrayRef)policies);
 
-    if (!PCFAFServerTrustIsValid(serverTrust) && !self.allowInvalidCertificates) {
+    if (self.SSLPinningMode == PCFAFSSLPinningModeNone) {
+        if (self.allowInvalidCertificates || PCFAFServerTrustIsValid(serverTrust)){
+            return YES;
+        } else {
+            return NO;
+        }
+    } else if (!PCFAFServerTrustIsValid(serverTrust) && !self.allowInvalidCertificates) {
         return NO;
     }
-
+    
     NSArray *serverCertificates = PCFAFCertificateTrustChainForServerTrust(serverTrust);
     switch (self.SSLPinningMode) {
         case PCFAFSSLPinningModeNone:
-            return YES;
+        default:
+            return NO;
         case PCFAFSSLPinningModeCertificate: {
             NSMutableArray *pinnedCertificates = [NSMutableArray array];
             for (NSData *certificateData in self.pinnedCertificates) {
@@ -293,13 +296,13 @@ static NSArray * PCFAFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust)
             return trustedPublicKeyCount > 0 && ((self.validatesCertificateChain && trustedPublicKeyCount == [serverCertificates count]) || (!self.validatesCertificateChain && trustedPublicKeyCount >= 1));
         }
     }
-    
+
     return NO;
 }
 
 #pragma mark - NSKeyValueObserving
 
-+ (NSSet *)keyPathsForValuesAffectingPinnedPublicKeys {
++ (NSSet *)keyPathsForValuesPCFAFfectingPinnedPublicKeys {
     return [NSSet setWithObject:@"pinnedCertificates"];
 }
 

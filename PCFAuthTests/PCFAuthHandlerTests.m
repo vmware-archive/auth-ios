@@ -496,7 +496,7 @@ static NSString *PCFAuthIdentifierPrefix = @"PCFAuth:";
     
     [authHandler deleteCredential];
     
-    OCMVerify([PCFAFOAuthCredential deleteCredentialWithIdentifier:prefixedIdentifier]);
+    OCMVerify([pcfAFOAuthCredential deleteCredentialWithIdentifier:prefixedIdentifier]);
     
     [pcfAFOAuthCredential stopMocking];
     [bundle stopMocking];
