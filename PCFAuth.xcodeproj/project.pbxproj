@@ -21,6 +21,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		E126D9011B4F19540009214C /* test2.cer in Resources */ = {isa = PBXBuildFile; fileRef = E18D31E31B4F142400832B5D /* test2.cer */; };
+		E126D9021B4F19580009214C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1BF42E71A422AC600B4707D /* Info.plist */; };
+		E126D9031B4F19CF0009214C /* test1.cer in Resources */ = {isa = PBXBuildFile; fileRef = E18D31E21B4F142400832B5D /* test1.cer */; };
 		E16DA16B1A89535500E37FDD /* PCFAuthHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = E16DA1691A89535500E37FDD /* PCFAuthHandler.h */; };
 		E16DA16C1A89535500E37FDD /* PCFAuthHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E16DA16A1A89535500E37FDD /* PCFAuthHandler.m */; };
 		E16DA16E1A8955EC00E37FDD /* PCFAuthHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E16DA16D1A8955EC00E37FDD /* PCFAuthHandlerTests.m */; };
@@ -160,6 +163,8 @@
 		E18AECB71AF1832800F99716 /* PCFAFHTTPRequestSerializer+OAuth2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PCFAFHTTPRequestSerializer+OAuth2.m"; sourceTree = "<group>"; };
 		E18AECB81AF1832800F99716 /* PCFAFOAuth2Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFAFOAuth2Manager.h; sourceTree = "<group>"; };
 		E18AECB91AF1832800F99716 /* PCFAFOAuth2Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAFOAuth2Manager.m; sourceTree = "<group>"; };
+		E18D31E21B4F142400832B5D /* test1.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = test1.cer; sourceTree = "<group>"; };
+		E18D31E31B4F142400832B5D /* test2.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = test2.cer; sourceTree = "<group>"; };
 		E19779111A8A9E9000A528B6 /* PCFAuthClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAuthClientTests.m; sourceTree = "<group>"; };
 		E19779131A8BDDB900A528B6 /* PCFAuthResponseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFAuthResponseTests.m; sourceTree = "<group>"; };
 		E19779151A8BDEB400A528B6 /* PCFTokenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCFTokenTests.m; sourceTree = "<group>"; };
@@ -387,6 +392,8 @@
 		E1BF42E61A422AC600B4707D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E18D31E21B4F142400832B5D /* test1.cer */,
+				E18D31E31B4F142400832B5D /* test2.cer */,
 				E1BF42E71A422AC600B4707D /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -572,6 +579,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E126D9021B4F19580009214C /* Info.plist in Resources */,
+				E126D9011B4F19540009214C /* test2.cer in Resources */,
+				E126D9031B4F19CF0009214C /* test1.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

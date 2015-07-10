@@ -26,6 +26,26 @@
 
 + (PCFAFOAuth2Manager *)manager {
     PCFAFOAuth2Manager *manager = [PCFAFOAuth2Manager clientWithBaseURL:[PCFAuthClient baseUrl] clientID:[PCFAuthConfig clientId] secret:[PCFAuthConfig clientSecret]];
+    
+    NSArray *pinnedSslCertificateNames = [PCFAuthConfig pinnedSslCertificateNames];
+    
+    if ([PCFAuthConfig trustAllSslCertificates]) {
+        manager.securityPolicy.allowInvalidCertificates = YES;
+    } else if (pinnedSslCertificateNames.count > 0) {
+        manager.securityPolicy = [PCFAFSecurityPolicy policyWithPinningMode:PCFAFSSLPinningModeCertificate];
+        
+        NSMutableArray *pinnedSslCertificateDataObjects = [NSMutableArray arrayWithCapacity:[PCFAuthConfig pinnedSslCertificateNames].count];
+        
+        for (NSString *pinnedSslCertificateName in pinnedSslCertificateNames) {
+            NSString *pinnedSslCertificatePath = [[NSBundle mainBundle] pathForResource:[pinnedSslCertificateName stringByDeletingPathExtension] ofType:[pinnedSslCertificateName pathExtension]];
+            NSData *pinnedSslCertificateData = [NSData dataWithContentsOfFile:pinnedSslCertificatePath];
+            [pinnedSslCertificateDataObjects addObject:pinnedSslCertificateData];
+        }
+        
+        [manager.securityPolicy setPinnedCertificates:pinnedSslCertificateDataObjects];
+        manager.securityPolicy.allowInvalidCertificates = YES;
+    }
+    
     [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:[PCFAuthConfig clientId] password:[PCFAuthConfig clientSecret]];
     return manager;
 }

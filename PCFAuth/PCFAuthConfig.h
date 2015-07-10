@@ -19,5 +19,7 @@
 + (NSString *)clientId;
 + (NSString *)clientSecret;
 + (NSString *)scopes;
++ (BOOL)trustAllSslCertificates;
++ (NSArray *)pinnedSslCertificateNames;
 
 @end

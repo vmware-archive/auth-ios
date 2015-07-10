@@ -94,9 +94,10 @@ static BOOL PCFAFServerTrustIsValid(SecTrustRef serverTrust) {
     BOOL isValid = NO;
     SecTrustResultType result;
     __Require_noErr_Quiet(SecTrustEvaluate(serverTrust, &result), _out);
-
-    isValid = (result == kSecTrustResultUnspecified || result == kSecTrustResultProceed);
-
+// __BEGIN_EDIT__
+    // isValid = (result == kSecTrustResultUnspecified || result == kSecTrustResultProceed);
+    isValid = result == kSecTrustResultUnspecified;
+// __END_EDIT__
 _out:
     return isValid;
 }

@@ -364,4 +364,68 @@
     [uuid stopMocking];
 }
 
+- (void)testSecurityPolicyConfigurationDefaults {
+    id pcfAuthConfig = OCMClassMock([PCFAuthConfig class]);
+    
+    NSString *clientId = [NSUUID UUID].UUIDString;
+    
+    OCMStub([pcfAuthConfig sharedInstance]).andReturn(pcfAuthConfig);
+    OCMStub([pcfAuthConfig trustAllSslCertificates]).andReturn(NO);
+    OCMStub([pcfAuthConfig clientId]).andReturn(clientId);
+    
+    PCFAFOAuth2Manager *manager = [PCFAuthClient manager];
+    
+    XCTAssertEqual(manager.securityPolicy.allowInvalidCertificates, NO);
+    XCTAssertNil(manager.securityPolicy.pinnedCertificates);
+    
+    [pcfAuthConfig stopMocking];
+}
+
+- (void)testSecurityPolicyConfigurationWithTrustAllSslCertificates {
+    id pcfAuthConfig = OCMClassMock([PCFAuthConfig class]);
+    
+    NSString *clientId = [NSUUID UUID].UUIDString;
+    
+    OCMStub([pcfAuthConfig sharedInstance]).andReturn(pcfAuthConfig);
+    OCMStub([pcfAuthConfig trustAllSslCertificates]).andReturn(YES);
+    OCMStub([pcfAuthConfig clientId]).andReturn(clientId);
+    
+    PCFAFOAuth2Manager *manager = [PCFAuthClient manager];
+    
+    XCTAssertEqual(manager.securityPolicy.allowInvalidCertificates, YES);
+    XCTAssertNil(manager.securityPolicy.pinnedCertificates);
+
+    [pcfAuthConfig stopMocking];    
+}
+
+- (void)testSecurityPolicyConfigurationWithPinnedSslCertificateNames {
+    id pcfAuthConfig = OCMClassMock([PCFAuthConfig class]);
+    
+    NSString *clientId = [NSUUID UUID].UUIDString;
+    NSArray *pinnedSslCertificateFileNames = @[@"test1.cer", @"test2.cer"];
+    id bundle = OCMClassMock([NSBundle class]);
+
+    OCMStub([pcfAuthConfig sharedInstance]).andReturn(pcfAuthConfig);
+    OCMStub([pcfAuthConfig trustAllSslCertificates]).andReturn(NO);
+    OCMStub([pcfAuthConfig pinnedSslCertificateNames]).andReturn(pinnedSslCertificateFileNames);
+    OCMStub([pcfAuthConfig clientId]).andReturn(clientId);
+    OCMStub([bundle mainBundle]).andReturn([NSBundle bundleForClass:[self class]]);
+
+    NSMutableArray *pinnedSslCertificateDataObjects = [NSMutableArray arrayWithCapacity:[PCFAuthConfig pinnedSslCertificateNames].count];
+    
+    for (NSString *pinnedSslCertificateName in pinnedSslCertificateFileNames) {
+        NSString *pinnedSslCertificatePath = [[NSBundle bundleForClass:[self class]] pathForResource:[pinnedSslCertificateName stringByDeletingPathExtension] ofType:[pinnedSslCertificateName pathExtension]];
+        NSData *pinnedSslCertificateData = [NSData dataWithContentsOfFile:pinnedSslCertificatePath];
+        [pinnedSslCertificateDataObjects addObject:pinnedSslCertificateData];
+    }
+
+    PCFAFOAuth2Manager *manager = [PCFAuthClient manager];
+    
+    XCTAssertEqual(manager.securityPolicy.allowInvalidCertificates, YES);
+    XCTAssertEqualObjects(manager.securityPolicy.pinnedCertificates, pinnedSslCertificateDataObjects);
+
+    [pcfAuthConfig stopMocking];
+    [bundle stopMocking];
+}
+
 @end

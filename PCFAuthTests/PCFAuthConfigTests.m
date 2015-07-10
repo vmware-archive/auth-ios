@@ -15,6 +15,8 @@
 
 @property NSString *url;
 @property NSString *value;
+@property BOOL trustAllSslCertificates;
+@property NSArray *pinnedSslCertificateNames;
 
 @end
 
@@ -26,12 +28,16 @@ static NSString* const PCFRedirectUrl = @"pivotal.auth.redirectUrl";
 static NSString* const PCFClientId = @"pivotal.auth.clientId";
 static NSString* const PCFClientSecret = @"pivotal.auth.clientSecret";
 static NSString* const PCFScopes = @"pivotal.auth.scopes";
+static NSString* const PCFTrustAllSslCertificates = @"pivotal.auth.trustAllSslCertificates";
+static NSString* const PCFPinnedSslCertificateNames = @"pivotal.auth.pinnedSslCertificateNames";
 
 - (void)setUp {
     [super setUp];
     
     self.url = [NSUUID UUID].UUIDString;
     self.value = [NSUUID UUID].UUIDString;
+    self.trustAllSslCertificates = arc4random_uniform(1);
+    self.pinnedSslCertificateNames = @[[NSUUID UUID].UUIDString];
 }
 
 - (void)testTokenUrl {
@@ -228,6 +234,72 @@ static NSString* const PCFScopes = @"pivotal.auth.scopes";
     
     OCMVerify([config values]);
     OCMVerify([dict objectForKey:PCFScopes]);
+    
+    [config stopMocking];
+}
+
+- (void)testTrustAllSSLCertificates {
+    id config = OCMPartialMock([[PCFAuthConfig alloc] init]);
+    
+    OCMStub([config sharedInstance]).andReturn(config);
+    OCMStub([config trustAllSslCertificates]).andReturn(self.trustAllSslCertificates);
+    
+    BOOL trustAllSSLCertificates = [PCFAuthConfig trustAllSslCertificates];
+    
+    XCTAssertEqual(trustAllSSLCertificates, self.trustAllSslCertificates);
+    
+    OCMVerify([config sharedInstance]);
+    OCMVerify([config trustAllSslCertificates]);
+    
+    [config stopMocking];
+}
+
+- (void)testTrustAllSSLCertificatesInstace {
+    id config = OCMPartialMock([[PCFAuthConfig alloc] init]);
+    NSDictionary *dict = OCMClassMock([NSDictionary class]);
+    
+    OCMStub([config values]).andReturn(dict);
+    OCMStub([dict objectForKey:[OCMArg any]]).andReturn([NSNumber numberWithBool:self.trustAllSslCertificates]);
+    
+    BOOL trustAllSSLCertificates = [config trustAllSslCertificates];
+    
+    XCTAssertEqual(trustAllSSLCertificates, self.trustAllSslCertificates);
+    
+    OCMVerify([config values]);
+    OCMVerify([dict objectForKey:PCFTrustAllSslCertificates]);
+    
+    [config stopMocking];
+}
+
+- (void)testPinnedSSLCertificateNames {
+    id config = OCMPartialMock([[PCFAuthConfig alloc] init]);
+    
+    OCMStub([config sharedInstance]).andReturn(config);
+    OCMStub([config pinnedSslCertificateNames]).andReturn(self.pinnedSslCertificateNames);
+    
+    NSArray *pinnedSSLCertificateNames = [PCFAuthConfig pinnedSslCertificateNames];
+    
+    XCTAssertEqual(pinnedSSLCertificateNames, self.pinnedSslCertificateNames);
+    
+    OCMVerify([config sharedInstance]);
+    OCMVerify([config pinnedSslCertificateNames]);
+    
+    [config stopMocking];
+}
+
+- (void)testPinnedSSLCertificateNamesInstance {
+    id config = OCMPartialMock([[PCFAuthConfig alloc] init]);
+    NSDictionary *dict = OCMClassMock([NSDictionary class]);
+    
+    OCMStub([config values]).andReturn(dict);
+    OCMStub([dict objectForKey:[OCMArg any]]).andReturn(self.pinnedSslCertificateNames);
+    
+    NSArray *pinnedSSLCertificateNames = [config pinnedSslCertificateNames];
+    
+    XCTAssertEqual(pinnedSSLCertificateNames, self.pinnedSslCertificateNames);
+    
+    OCMVerify([config values]);
+    OCMVerify([dict objectForKey:PCFPinnedSslCertificateNames]);
     
     [config stopMocking];
 }

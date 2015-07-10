@@ -8,7 +8,6 @@
 
 #import "PCFAuth.h"
 #import "PCFToken.h"
-#import "PCFAFOAuth2Manager.h"
 #import "PCFAuthClient.h"
 #import "PCFAuthLogger.h"
 #import "PCFAuthConfig.h"

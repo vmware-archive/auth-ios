@@ -28,6 +28,8 @@ static NSString* const PCFRedirectUrl = @"pivotal.auth.redirectUrl";
 static NSString* const PCFClientId = @"pivotal.auth.clientId";
 static NSString* const PCFClientSecret = @"pivotal.auth.clientSecret";
 static NSString* const PCFScopes = @"pivotal.auth.scopes";
+static NSString* const PCFTrustAllSslCertificates = @"pivotal.auth.trustAllSslCertificates";
+static NSString* const PCFPinnedSslCertificateNames = @"pivotal.auth.pinnedSslCertificateNames";
 
 
 + (PCFAuthConfig *)sharedInstance {
@@ -61,6 +63,14 @@ static NSString* const PCFScopes = @"pivotal.auth.scopes";
 
 + (NSString *)scopes {
     return [[PCFAuthConfig sharedInstance] scopes];
+}
+
++ (BOOL)trustAllSslCertificates {
+    return [[PCFAuthConfig sharedInstance] trustAllSslCertificates];
+}
+
++ (NSArray *)pinnedSslCertificateNames {
+    return [[PCFAuthConfig sharedInstance] pinnedSslCertificateNames];
 }
 
 - (NSString *)tokenUrl {
@@ -116,6 +126,17 @@ static NSString* const PCFScopes = @"pivotal.auth.scopes";
     }
     return scopes;
 }
+
+- (BOOL)trustAllSslCertificates {
+    NSString *trustAllSSLCertificates = [self.values objectForKey:PCFTrustAllSslCertificates];
+    return [trustAllSSLCertificates boolValue];
+}
+
+- (NSArray *)pinnedSslCertificateNames {
+    id object = [self.values objectForKey:PCFPinnedSslCertificateNames];
+    return !object || [object isKindOfClass:[NSArray class]] ? object : @[ object ];
+}
+
 
 - (NSDictionary *)values {
     if (!_values) {

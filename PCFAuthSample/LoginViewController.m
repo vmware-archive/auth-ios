@@ -7,7 +7,6 @@
 //
 
 #import "LoginViewController.h"
-#import "PCFAFOAuth2Manager.h"
 
 @implementation LoginViewController
 
