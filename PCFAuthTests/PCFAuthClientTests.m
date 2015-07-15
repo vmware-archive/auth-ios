@@ -395,7 +395,7 @@
     XCTAssertEqual(manager.securityPolicy.allowInvalidCertificates, YES);
     XCTAssertNil(manager.securityPolicy.pinnedCertificates);
 
-    [pcfAuthConfig stopMocking];    
+    [pcfAuthConfig stopMocking];
 }
 
 - (void)testSecurityPolicyConfigurationWithPinnedSslCertificateNames {
