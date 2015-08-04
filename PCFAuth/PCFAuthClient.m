@@ -99,7 +99,7 @@
 }
 
 + (void)grantWithAuthCodeFlow:(UIWebView *)webview completionBlock:(PCFAuthClientBlock)block {
-    LogDebug(@"Starting auth code flow: %@", [PCFAuthConfig authorizeUrl]);
+    LogDebug(@"Starting auth code flow: %@", webview);
     
     __block PCFAuthCodeHandler *handler = [[PCFAuthCodeHandler alloc] initWithWebView:webview];
     
