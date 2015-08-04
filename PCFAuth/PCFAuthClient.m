@@ -12,6 +12,7 @@
 #import "PCFAuthConfig.h"
 #import "PCFAuthCodeHandler.h"
 #import "PCFAuth.h"
+#import "PCFAuthLogger.h"
 
 @implementation PCFAuthClient
 
@@ -56,6 +57,8 @@
 }
 
 + (void)grantWithRefreshToken:(NSString *)refreshToken completionBlock:(PCFAuthClientBlock)block {
+    LogDebug(@"Fetching access token from refresh token: %@", self.tokenUrl);
+    
     [self.manager authenticateUsingOAuthWithURLString:self.tokenUrl.path refreshToken:refreshToken success:^(PCFAFOAuthCredential *credential) {
         if (block) {
             block(credential, nil);
@@ -68,6 +71,8 @@
 }
 
 + (void)grantWithUsername:(NSString *)username password:(NSString *)password completionBlock:(PCFAuthClientBlock)block {
+    LogDebug(@"Fetching access token from username/password: %@", self.tokenUrl);
+    
     [self.manager authenticateUsingOAuthWithURLString:self.tokenUrl.path username:username password:password scope:[PCFAuthClient tokenScopes] success:^(PCFAFOAuthCredential *credential) {
         if (block) {
             block(credential, nil);
@@ -80,6 +85,8 @@
 }
 
 + (void)grantWithAuthCode:(NSString *)code completionBlock:(PCFAuthClientBlock)block {
+    LogDebug(@"Fetching access token from auth code: %@", self.tokenUrl);
+    
     [self.manager authenticateUsingOAuthWithURLString:self.tokenUrl.path code:code redirectURI:[PCFAuthConfig redirectUrl] success:^(PCFAFOAuthCredential *credential) {
         if (block) {
             block(credential, nil);
@@ -92,6 +99,8 @@
 }
 
 + (void)grantWithAuthCodeFlow:(UIWebView *)webview completionBlock:(PCFAuthClientBlock)block {
+    LogDebug(@"Starting auth code flow: %@", [PCFAuthConfig authorizeUrl]);
+    
     __block PCFAuthCodeHandler *handler = [[PCFAuthCodeHandler alloc] initWithWebView:webview];
     
     [handler load:self.authCodeRequest completionHandler:^(NSString *code) {
